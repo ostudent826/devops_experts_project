@@ -14,14 +14,14 @@ pipeline {
                 stage('Run REST API') {
                     steps {
                         // Run the REST API server in a minimized window
-                        bat 'start /min "C:\\path\\to\\correct\\python.exe" rest_app.py'
+                        bat 'start /min "C:\Users\shaam\AppData\Local\Programs\Python\Python312\python.exe" rest_app.py'
                     }
                 }
 
                 stage('Run Web Server') {
                     steps {
                         // Run the Web server in a minimized window
-                        bat 'start /min "C:\\path\\to\\correct\\python.exe" web_app.py'
+                        bat 'start /min "C:\Users\shaam\AppData\Local\Programs\Python\Python312\python.exe" web_app.py'
                     }
                 }
             }
@@ -39,7 +39,7 @@ pipeline {
         stage('Run Cleanup Script') {
             steps {
                 // Run the cleanup script at the end
-                bat '"C:\\path\\to\\correct\\python.exe" clean_environment.py'
+                bat '"C:\Users\shaam\AppData\Local\Programs\Python\Python312\python.exe" clean_environment.py'
             }
         }
     }
