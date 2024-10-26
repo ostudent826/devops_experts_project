@@ -9,19 +9,19 @@ pipeline {
             }
         }
 
-        stage('Run Backend Server') {
-            steps {
+      //  stage('Run Backend Server') {
+         //   steps {
                 // Skip running rest_app.py in this stage by commenting out the command
                 // bat 'start /min cmd.exe /K "python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\rest_app.py"'
-            }
-        }
+        //    }
+      //  }
 
-        stage('Run Frontend Server') {
-            steps {
+        //stage('Run Frontend Server') {
+           // steps {
                 // Skip running web_app.py in this stage by commenting out the command
                 // bat 'start /min cmd.exe /K "python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\web_app.py"'
-            }
-        }
+           // }
+      //  }
 
         stage('Backend Testing') {
             steps {
