@@ -91,8 +91,8 @@ def query_db_user(id):
 
 if __name__ == '__main__':
 
-    id = input("Enter the ID to add the user: ")
 
+    id = 37
     add_user_post("ofritest",id)
     sleep(2)
     check_user_added(id)
