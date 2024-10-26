@@ -9,37 +9,28 @@ pipeline {
             }
         }
 
+        stage('Install Requirements') {
+            steps {
+                // Install dependencies from requirements.txt
+                bat 'python -m pip install -r C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\requirements.txt'
+            }
+        }
+
         stage('Run Backend Servers') {
             parallel {
                 stage('Run REST API') {
                     steps {
-                        // Run the REST API server in a minimized window
-                        bat 'start /min "C:\\Users\\shaam\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" rest_app.py'
+                        // Run the REST API server in a visible command prompt window
+                        bat 'start cmd /k "python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\rest_app.py"'
                     }
                 }
 
                 stage('Run Web Server') {
                     steps {
-                        // Run the Web server in a minimized window
-                        bat 'start /min "C:\\Users\\shaam\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" web_app.py'
+                        // Run the Web server in a visible command prompt window
+                        bat 'start cmd /k "python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\web_app.py"'
                     }
                 }
-            }
-        }
-
-        stage('Delay') {
-            steps {
-                // Add a delay of 10 seconds
-                script {
-                    sleep 10
-                }
-            }
-        }
-
-        stage('Run Cleanup Script') {
-            steps {
-                // Run the cleanup script at the end
-                bat '"C:\\Users\\shaam\\AppData\\Local\\Programs\\Python\\Python312\\python.exe" clean_environment.py'
             }
         }
     }
