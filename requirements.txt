@@ -1,7 +1,5 @@
-
-
-pymysql
+Flask
+selenium
 requests
-#json
-flask
-Selenium
+pymysql
+Flask-Cors
