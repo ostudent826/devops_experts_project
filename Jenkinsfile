@@ -21,14 +21,14 @@ pipeline {
                 stage('Run REST API') {
                     steps {
                         // Run the REST API server in a visible window
-                        bat 'start /min python rest_app.py'
+                        bat 'start python rest_app.py'
                     }
                 }
 
                 stage('Run Web Server') {
                     steps {
                         // Run the Web server in a visible window
-                        bat 'start /min  python web_app.py'
+                        bat 'start python web_app.py'
                     }
                 }
             }
