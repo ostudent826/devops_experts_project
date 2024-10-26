@@ -9,21 +9,45 @@ pipeline {
             }
         }
 
-        stage('Run Backend Servers') {
-            parallel {
-                stage('Run REST API') {
-                    steps {
-                        // Run the REST API server in a visible window and log output
-                        bat 'start New Text Document.bat'
-                    }
-                }
+        stage('Run Backend Server') {
+            steps {
+                // Skip running rest_app.py in this stage by commenting out the command
+                // bat 'start /min cmd.exe /K "python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\rest_app.py"'
+            }
+        }
 
-                stage('Run Web Server') {
-                    steps {
-                        // Run the Web server in a visible window and log output
-                        bat 'start python web_app.py >> web_server_log.txt 2>&1'
-                    }
-                }
+        stage('Run Frontend Server') {
+            steps {
+                // Skip running web_app.py in this stage by commenting out the command
+                // bat 'start /min cmd.exe /K "python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\web_app.py"'
+            }
+        }
+
+        stage('Backend Testing') {
+            steps {
+                // Run backend_testing.py and wait for it to finish
+                bat 'python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\backend_testing.py'
+            }
+        }
+
+        stage('Frontend Testing') {
+            steps {
+                // Run frontend_testing.py and wait for it to finish
+                bat 'python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\frontend_testing.py'
+            }
+        }
+
+        stage('Combined Testing') {
+            steps {
+                // Run combined_testing.py and wait for it to finish
+                bat 'python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\combined_testing.py'
+            }
+        }
+
+        stage('Clean Environment') {
+            steps {
+                // Run clean_environment.py at the end to perform cleanup
+                bat 'python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\clean_environment.py'
             }
         }
     }
