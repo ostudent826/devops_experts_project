@@ -9,17 +9,17 @@ pipeline {
             }
         }
 
-       stage('Run Backend Server') {
-           steps {
-                bat 'start /min python rest_app.py'
-           }
-       }
+        stage('Run Backend Server') {
+            steps {
+                bat 'start /min /b python rest_app.py'
+            }
+        }
 
         stage('Run Frontend Server') {
-           steps {
-                bat 'start /min python web_app.py'
-           }
-       }
+            steps {
+                bat 'start /min /b python web_app.py'
+            }
+        }
 
         stage('Backend Testing') {
             steps {
@@ -30,7 +30,7 @@ pipeline {
 
         stage('Frontend Testing') {
             steps {
-                // Run frontend_testing.py and wait for it to finish
+                // Intentional error to test email notification
                 batss 'python frontend_testing.py'
             }
         }
@@ -51,35 +51,15 @@ pipeline {
         }
     }
 
-
-
-
-
-post {
-
-    failure {
-            emailext( subject: '${DEFAULT_SUBJECT}'
-                , body: '${JELLY_SCRIPT,template="html"}'
-                , to: emailextrecipients([[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']])
-                , replyTo: '$DEFAULT_REPLYTO'
-                , mimeType: 'text/html'
-                )
-    }
-
-
-
-
-
-    
     post {
         failure {
-                 emailext(
-                    subject: '${DEFAULT_SUBJECT}'
-                    , body: '${JELLY_SCRIPT,template="html"}'
-                    , to: emailextrecipients([[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']])
-                    , replyTo: '$DEFAULT_REPLYTO'
-                    , mimeType: 'text/html'
-                    )
-            }
+            emailext(
+                subject: '${DEFAULT_SUBJECT}',
+                body: '${JELLY_SCRIPT,template="html"}',
+                to: 'ofrigsp@gmail.com,o.student826@gmail.com',
+                replyTo: '$DEFAULT_REPLYTO',
+                mimeType: 'text/html'
+            )
+        }
     }
 }
