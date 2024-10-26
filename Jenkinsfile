@@ -14,7 +14,7 @@ pipeline {
                 stage('Run REST API') {
                     steps {
                         // Run the REST API server in a visible window and log output
-                        bat 'start python rest_app.py >> rest_api_log.txt 2>&1'
+                        bat 'start New Text Document.bat'
                     }
                 }
 
