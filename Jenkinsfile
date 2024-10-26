@@ -51,18 +51,35 @@ pipeline {
         }
     }
 
+
+
+
+
+post {
+
+    failure {
+            emailext( subject: '${DEFAULT_SUBJECT}'
+                , body: '${JELLY_SCRIPT,template="html"}'
+                , to: emailextrecipients([[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']])
+                , replyTo: '$DEFAULT_REPLYTO'
+                , mimeType: 'text/html'
+                )
+    }
+
+
+
+
+
+    
     post {
         failure {
-            script {
-                emailext (
-                    subject: "Build Failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
-                    body: """<p>Build failed for project <b>${env.JOB_NAME}</b></p>
-                             <p>Build number: ${env.BUILD_NUMBER}</p>
-                             <p>See details at: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
-                    to: 'ofrigsp@gmail.com', // Add specific emails here
-                    recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
-                )
+                 emailext(
+                    subject: '${DEFAULT_SUBJECT}'
+                    , body: '${JELLY_SCRIPT,template="html"}'
+                    , to: emailextrecipients([[$class: 'CulpritsRecipientProvider'], [$class: 'RequesterRecipientProvider']])
+                    , replyTo: '$DEFAULT_REPLYTO'
+                    , mimeType: 'text/html'
+                    )
             }
-        }
     }
 }
