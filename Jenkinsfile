@@ -31,14 +31,15 @@ pipeline {
         stage('Frontend Testing') {
             steps {
                 // Run frontend_testing.py and wait for it to finish
-                bat 'python frontend_testing.py'
+                batss 'python frontend_testing.py'
             }
         }
 
+        // Uncomment if you want to run Combined Testing
         // stage('Combined Testing') {
         //     steps {
         //         // Run combined_testing.py and wait for it to finish
-        //         bat 'python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\combined_testing.py'
+        //         bat 'python combined_testing.py'
         //     }
         // }
 
@@ -46,6 +47,21 @@ pipeline {
             steps {
                 // Run clean_environment.py at the end to perform cleanup
                 bat 'python clean_environment.py'
+            }
+        }
+    }
+
+    post {
+        failure {
+            script {
+                emailext (
+                    subject: "Build Failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}]",
+                    body: """<p>Build failed for project <b>${env.JOB_NAME}</b></p>
+                             <p>Build number: ${env.BUILD_NUMBER}</p>
+                             <p>See details at: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>""",
+                    to: 'ofrigsp@gmail.com', // Add specific emails here
+                    recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']]
+                )
             }
         }
     }
