@@ -20,18 +20,34 @@ pipeline {
             parallel {
                 stage('Run REST API') {
                     steps {
-                        // Run the REST API server in a visible command prompt window
-                        bat 'start cmd /k "python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\rest_app.py"'
+                        // Start REST API server in a visible cmd window and save the PID
+                        bat 'start cmd /k "python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\rest_app.py" & echo !^! > rest_pid.txt'
                     }
                 }
 
                 stage('Run Web Server') {
                     steps {
-                        // Run the Web server in a visible command prompt window
-                        bat 'start cmd /k "python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\web_app.py"'
+                        // Start Web server in a visible cmd window and save the PID
+                        bat 'start cmd /k "python C:\\data\\jenkins_home\\workspace\\devops_project_pipeline\\web_app.py" & echo !^! > web_pid.txt'
                     }
                 }
             }
+        }
+
+        stage('Cleanup') {
+            steps {
+                // Kill the command prompts by PID if they exist
+                bat 'for /f %p in (rest_pid.txt) do taskkill /F /PID %p'
+                bat 'for /f %p in (web_pid.txt) do taskkill /F /PID %p'
+            }
+        }
+    }
+
+    post {
+        always {
+            // Remove the temporary PID files at the end of the build
+            bat 'del rest_pid.txt'
+            bat 'del web_pid.txt'
         }
     }
 }
