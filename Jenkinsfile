@@ -54,9 +54,9 @@ pipeline {
     post {
         failure {
             emailext(
-                subject: 'Hi aviel',
+                subject: 'Hi Aviel just testing',
                 body: '${JELLY_SCRIPT,template="html"}',
-                to: 'ofrigsp@gmail.com',
+                to: 'aviel33@gmail.com',
                 replyTo: '$DEFAULT_REPLYTO',
                 mimeType: 'text/html'
             )
