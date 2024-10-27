@@ -31,7 +31,7 @@ pipeline {
         stage('Frontend Testing') {
             steps {
                 // Intentional error to test email notification
-                bat 'python frontend_testing.py'
+                batss 'python frontend_testing.py'
             }
         }
 
@@ -54,7 +54,7 @@ pipeline {
     post {
         failure {
             emailext(
-                subject: '${DEFAULT_SUBJECT}',
+                subject: 'Hi aviel',
                 body: '${JELLY_SCRIPT,template="html"}',
                 to: 'ofrigsp@gmail.com',
                 replyTo: '$DEFAULT_REPLYTO',
