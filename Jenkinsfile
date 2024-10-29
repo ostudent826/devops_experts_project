@@ -31,7 +31,7 @@ pipeline {
         stage('Frontend Testing') {
             steps {
                 // Intentional error to test email notification
-                batss 'python frontend_testing.py'
+                bat 'python frontend_testing.py'
             }
         }
 
