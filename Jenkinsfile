@@ -5,7 +5,7 @@ pipeline {
         stage('Pull Code') {
             steps {
                 // Pull code from GitHub repository
-                git url: 'shttps://github.com/ostudent826/devops_experts_project.git', branch: 'second-part'
+                git url: 'https://github.com/ostudent826/devops_experts_project.git', branch: 'second-part'
             }
         }
 
