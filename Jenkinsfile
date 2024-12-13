@@ -6,6 +6,7 @@ pipeline {
         DOCKER_IMAGE_FRONTEND = "devop_prj_frontend_app"  
         DOCKER_IMAGE_MYSQL = "devop_prj_mysql_db"  
         DOCKER_REPO = "ostudent826/devops_experts_project"   
+    }
 
     stages {
         stage('Pull Code') {
@@ -145,17 +146,17 @@ pipeline {
 //                 }
 //             }
 //         }
-//     }
+    }
 
-//     post {
-//         failure {
-//             emailext(
-//                 subject: 'Build Failed: ${JOB_NAME} #${BUILD_NUMBER}',
-//                 body: '${JELLY_SCRIPT,template="html"}',
-//                 to: 'eliran9657@gmail.com',
-//                 replyTo: '$DEFAULT_REPLYTO',
-//                 mimeType: 'text/html'
-//             )
-//         }
-//     }
-// }
+    post {
+        failure {
+            emailext(
+                subject: 'Build Failed: ${JOB_NAME} #${BUILD_NUMBER}',
+                body: '${JELLY_SCRIPT,template="html"}',
+                to: 'eliran9657@gmail.com',
+                replyTo: '$DEFAULT_REPLYTO',
+                mimeType: 'text/html'
+            )
+        }
+    }
+}
