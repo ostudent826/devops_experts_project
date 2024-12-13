@@ -2,6 +2,7 @@ pipeline {
     agent any
 
     environment {
+        DOCKER_IMAGE_VERSION = "v1"
         DOCKER_IMAGE_BACKEND = "devop_prj_backend_app"  
         DOCKER_IMAGE_FRONTEND = "devop_prj_frontend_app"  
         DOCKER_IMAGE_MYSQL = "devop_prj_mysql_db"  
@@ -76,88 +77,90 @@ pipeline {
             }
         }
 
-//         stage('Build Docker Images') {
-//             steps {
-//                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-//                     dir('third-part/containers images/backend') {
-//                         echo 'Building Backend Docker image...'
-//                         bat 'docker build -t %DOCKER_IMAGE_BACKEND%:%BUILD_NUMBER% .'
-//                     }
-//                     dir('third-part/containers images/frontend') {
-//                         echo 'Building Frontend Docker image...'
-//                         bat 'docker build -t %DOCKER_IMAGE_FRONTEND%:%BUILD_NUMBER% .'
-//                     }
-//                     dir('third-part/containers images/mysql') {
-//                         echo 'Building MySQL Docker image...'
-//                         bat 'docker build -t %DOCKER_IMAGE_MYSQL%:%BUILD_NUMBER% .'
-//                     }
-//                 }
-//             }
-//         }
+        stage('Build Docker Images') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    dir('third-part/containers images/backend') {
+                        echo 'Building Backend Docker image...'
+                        bat 'docker build -t %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION% .'
+                    }
+                    dir('third-part/containers images/frontend') {
+                        echo 'Building Frontend Docker image...'
+                        bat 'docker build -t %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION% .'
+                    }
+                    dir('third-part/containers images/mysql') {
+                        echo 'Building MySQL Docker image...'
+                        bat 'docker build -t %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION% .'
+                    }
+                }
+            }
+        }
 
-//         stage('Push Docker Images') {
-//             steps {
-//                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-//                     echo 'Pushing Docker images to Docker Hub...'
-//                     bat """
-//                     docker tag %DOCKER_IMAGE_BACKEND%:%BUILD_NUMBER% %DOCKER_REPO%/backend:%BUILD_NUMBER%
-//                     docker push %DOCKER_REPO%/backend:%BUILD_NUMBER%
+        stage('Push Docker Images') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    echo 'Pushing Docker images to Docker Hub...'
+                    bat """
+                    docker tag %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%/backend:%DOCKER_IMAGE_VERSION%
+                    docker push %DOCKER_REPO%/backend:%DOCKER_IMAGE_VERSION%
 
-//                     docker tag %DOCKER_IMAGE_FRONTEND%:%BUILD_NUMBER% %DOCKER_REPO%/frontend:%BUILD_NUMBER%
-//                     docker push %DOCKER_REPO%/frontend:%BUILD_NUMBER%
+                    docker tag %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%/frontend:%DOCKER_IMAGE_VERSION%
+                    docker push %DOCKER_REPO%/frontend:%DOCKER_IMAGE_VERSION%
 
-//                     docker tag %DOCKER_IMAGE_MYSQL%:%BUILD_NUMBER% %DOCKER_REPO%/mysql:%BUILD_NUMBER%
-//                     docker push %DOCKER_REPO%/mysql:%BUILD_NUMBER%
-//                     """
-//                 }
-//             }
-//         }
+                    docker tag %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%/mysql:%DOCKER_IMAGE_VERSION%
+                    docker push %DOCKER_REPO%/mysql:%DOCKER_IMAGE_VERSION%
+                    """
+                }
+            }
+        }
 
-//         stage('Set Compose Image Version') {
-//             steps {
-//                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-//                     echo 'Setting image version in .env file...'
-//                     bat 'echo IMAGE_TAG=%BUILD_NUMBER% > .env'
-//                 }
-//             }
-//         }
+        stage('Set Compose Image Version') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    echo 'Setting image version in .env file...'
+                    bat 'echo IMAGE_TAG=%DOCKER_IMAGE_VERSION% > .env'
+                }
+            }
+        }
 
-//         stage('Run Docker Compose') {
-//             steps {
-//                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-//                     echo 'Starting services with docker-compose...'
-//                     bat 'docker-compose up -d'
-//                 }
-//             }
-//         }
+        stage('Run Docker Compose') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    echo 'Starting services with docker-compose...'
+                    bat 'docker-compose up -d'
+                }
+            }
+        }
 
-//         stage('Test Dockerized App') {
-//             steps {
-//                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-//                     echo 'Testing dockerized app with backend and frontend tests...'
-//                     bat 'python backend_testing.py'
-//                     bat 'python frontend_testing.py'
-//                     bat 'python combined_testing.py'
-//                 }
-//             }
-//         }
+        
 
-//         stage('Clean Environment') {
-//             steps {
-//                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-//                     echo 'Cleaning up environment...'
-//                     bat """
-//                     docker-compose down
-//                     docker rmi %DOCKER_IMAGE_BACKEND%:%BUILD_NUMBER%
-//                     docker rmi %DOCKER_IMAGE_FRONTEND%:%BUILD_NUMBER%
-//                     docker rmi %DOCKER_IMAGE_MYSQL%:%BUILD_NUMBER%
-//                     docker rmi %DOCKER_REPO%/backend:%BUILD_NUMBER%
-//                     docker rmi %DOCKER_REPO%/frontend:%BUILD_NUMBER%
-//                     docker rmi %DOCKER_REPO%/mysql:%BUILD_NUMBER%
-//                     """
-//                 }
-//             }
-//         }
+        stage('Test Dockerized App') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    echo 'Testing dockerized app with backend and frontend tests...'
+                    bat 'python backend_testing.py'
+                    bat 'python frontend_testing.py'
+                    bat 'python combined_testing.py'
+                }
+            }
+        }
+
+        // stage('Clean Environment') {
+        //     steps {
+        //         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+        //             echo 'Cleaning up environment...'
+        //             bat """
+        //             docker-compose down
+        //             docker rmi %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION%
+        //             docker rmi %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION%
+        //             docker rmi %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION%
+        //             docker rmi %DOCKER_REPO%/backend:%DOCKER_IMAGE_VERSION%
+        //             docker rmi %DOCKER_REPO%/frontend:%DOCKER_IMAGE_VERSION%
+        //             docker rmi %DOCKER_REPO%/mysql:%DOCKER_IMAGE_VERSION%
+        //             """
+        //         }
+        //     }
+        // }
     }
 
     post {
