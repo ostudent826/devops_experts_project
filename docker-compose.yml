@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  mysql_db:
+    image: ${DOCKER_IMAGE_MYSQL}:${IMAGE_TAG}
+    container_name: mysql_container
+    ports:
+      - "3307:3306"               
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456 # Root password
+      MYSQL_DATABASE: users       # Default database
+      MYSQL_USER: admin           # Create admin user
+      MYSQL_PASSWORD: 123456      # Password for admin user
+    networks:
+      - app-network
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend_app:
+    image: ${DOCKER_IMAGE_BACKEND}:${IMAGE_TAG}
+    container_name: backend_app
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+    depends_on:
+      mysql_db:
+        condition: service_healthy
+
+  frontend_app:
+    image: ${DOCKER_IMAGE_FRONTEND}:${IMAGE_TAG}
+    container_name: frontend_app
+    ports:
+      - "5001:5001"
+    networks:
+      - app-network
+    depends_on:
+      mysql_db:
+        condition: service_healthy
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
