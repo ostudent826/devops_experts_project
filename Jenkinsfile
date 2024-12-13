@@ -19,9 +19,10 @@ pipeline {
         stage('Run Backend Server') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    bat 'start /min /b python Code Non container/rest_app.py'
+                    dir('Code Non container') {
+                        bat 'start /min /b python rest_app.py'
+                    }
                 }
-            }
         }
 
         stage('Run Frontend Server') {
