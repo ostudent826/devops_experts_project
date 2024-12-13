@@ -2,11 +2,10 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_BACKEND = "backend-image-name"  // Replace with your backend Docker image name
-        DOCKER_IMAGE_FRONTEND = "frontend-image-name"  // Replace with your frontend Docker image name
-        DOCKER_IMAGE_MYSQL = "mysql-image-name"  // Replace with your MySQL Docker image name
-        DOCKER_REPO = "your-docker-hub-repo"   // Replace with your Docker Hub repo
-    }
+        DOCKER_IMAGE_BACKEND = "devop_prj_backend_app"  
+        DOCKER_IMAGE_FRONTEND = "devop_prj_frontend_app"  
+        DOCKER_IMAGE_MYSQL = "devop_prj_mysql_db"  
+        DOCKER_REPO = "ostudent826/devops_experts_project"   
 
     stages {
         stage('Pull Code') {
