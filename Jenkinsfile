@@ -6,7 +6,8 @@ pipeline {
         DOCKER_IMAGE_BACKEND = "devop_prj_backend_app"  
         DOCKER_IMAGE_FRONTEND = "devop_prj_frontend_app"  
         DOCKER_IMAGE_MYSQL = "devop_prj_mysql_db"  
-        DOCKER_REPO = "ostudent826/devops_experts_project"   
+        DOCKER_REPO = "ostudent826/devops_experts_project"
+        DOCKER_TOKEN = "dckr_pat_td8LmOyzWeqAfUcyW-3w37sJaTo"
     }
 
     stages {
@@ -76,7 +77,12 @@ pipeline {
                 }
             }
         }
-
+         stage('Docker Login') {
+            steps {
+                echo 'Authenticating with Docker Hub...'
+                bat 'docker login --username ostudent826 --password %DOCKER_TOKEN%'
+            }
+        }
         stage('Build Docker Images') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
