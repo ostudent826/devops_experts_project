@@ -20,7 +20,7 @@ pipeline {
         stage('Run Backend Server') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('Code Non container') {
+                    dir('third-part/Code Non container') {
                         bat 'start /min /b python rest_app.py'
                     }
                 }
@@ -30,7 +30,7 @@ pipeline {
         stage('Run Frontend Server') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('Code Non container') {
+                    dir('third-part/Code Non container') {
                         bat 'start /min /b python web_app.py'
                     }
                 }
@@ -40,7 +40,7 @@ pipeline {
         stage('Backend Testing') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('Code Non container') {
+                    dir('third-part/Code Non container') {
                         bat 'python backend_testing.py'
                     }
                 }
@@ -50,7 +50,7 @@ pipeline {
         stage('Frontend Testing') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('Code Non container') {
+                    dir('third-part/Code Non container') {
                         bat 'python frontend_testing.py'
                     }
                 }
@@ -60,7 +60,7 @@ pipeline {
         stage('Combined Testing') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('Code Non container') {
+                    dir('third-part/Code Non container') {
                         bat 'python combined_testing.py'
                     }
                 }
@@ -70,7 +70,7 @@ pipeline {
         stage('Clean Environment') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('Code Non container') {
+                    dir('third-part/Code Non container') {
                         bat 'python clean_environment.py'
                     }
                 }
@@ -137,30 +137,29 @@ pipeline {
         stage('Test Dockerized App') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                 dir('third-part/Code Non Containers/backend') {
                     echo 'Testing dockerized app with backend and frontend tests...'
                     bat 'python backend_testing.py'
                     bat 'python frontend_testing.py'
                     bat 'python combined_testing.py'
+                 }
                 }
             }
         }
 
-        // stage('Clean Environment') {
-        //     steps {
-        //         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-        //             echo 'Cleaning up environment...'
-        //             bat """
-        //             docker-compose down
-        //             docker rmi %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION%
-        //             docker rmi %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION%
-        //             docker rmi %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION%
-        //             docker rmi %DOCKER_REPO%/backend:%DOCKER_IMAGE_VERSION%
-        //             docker rmi %DOCKER_REPO%/frontend:%DOCKER_IMAGE_VERSION%
-        //             docker rmi %DOCKER_REPO%/mysql:%DOCKER_IMAGE_VERSION%
-        //             """
-        //         }
-        //     }
-        // }
+        stage('Clean Environment') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    echo 'Cleaning up environment...'
+                    bat """
+                    docker-compose down
+                    docker rmi %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION%
+                    docker rmi %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION%
+                    docker rmi %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION%
+                    """
+                }
+            }
+        }
     }
 
     post {
