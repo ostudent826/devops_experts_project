@@ -81,7 +81,7 @@ pipeline {
             steps {
                script {
                 print('I am sleeping for a while')
-                sleep(30)    
+                sleep(300)    
                 }
             }
         }
