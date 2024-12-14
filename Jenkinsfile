@@ -79,9 +79,10 @@ pipeline {
         }
         stage("wait_prior_starting_smoke_testing") {
             steps {
-                def time = params.SLEEP_TIME_IN_SECONDS
-                    echo "Waiting ${SLEEP_TIME_IN_SECONDS} seconds for deployment to complete prior starting smoke testing"
-                sleep time.toInteger(45) //Set time in seconds
+               script {
+                print('I am sleeping for a while')
+                sleep(30)    
+                }
             }
         }
         //  stage('Docker Login') {
