@@ -151,7 +151,7 @@ pipeline {
             }
         }
 
-        stage('Clean Environment') {
+        stage('Clean Environment_containers') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                     echo 'Cleaning up environment...'
