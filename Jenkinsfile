@@ -73,35 +73,34 @@ pipeline {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                     dir('Code Non container') {
                         bat 'python clean_environment.py'
-                        bat 'timeout /t 5'
                     }
                 }
             }
         }
-         stage('Docker Login') {
-            steps {
-                echo 'Authenticating with Docker Hub...'
-                bat 'docker login --username ostudent826 --password %DOCKER_TOKEN%'
-            }
-        }
-        stage('Build Docker Images') {
-            steps {
-                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('third-part/containers images/backend') {
-                        echo 'Building Backend Docker image...'
-                        bat 'docker build -t %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION% .'
-                    }
-                    dir('third-part/containers images/frontend') {
-                        echo 'Building Frontend Docker image...'
-                        bat 'docker build -t %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION% .'
-                    }
-                    dir('third-part/containers images/mysql') {
-                        echo 'Building MySQL Docker image...'
-                        bat 'docker build -t %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION% .'
-                    }
-                }
-            }
-        }
+        //  stage('Docker Login') {
+        //     steps {
+        //         echo 'Authenticating with Docker Hub...'
+        //         bat 'docker login --username ostudent826 --password %DOCKER_TOKEN%'
+        //     }
+        // }
+        // stage('Build Docker Images') {
+        //     steps {
+        //         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+        //             dir('third-part/containers images/backend') {
+        //                 echo 'Building Backend Docker image...'
+        //                 bat 'docker build -t %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION% .'
+        //             }
+        //             dir('third-part/containers images/frontend') {
+        //                 echo 'Building Frontend Docker image...'
+        //                 bat 'docker build -t %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION% .'
+        //             }
+        //             dir('third-part/containers images/mysql') {
+        //                 echo 'Building MySQL Docker image...'
+        //                 bat 'docker build -t %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION% .'
+        //             }
+        //         }
+        //     }
+        // }
 
         // stage('Push Docker Images') {
         //     steps {
