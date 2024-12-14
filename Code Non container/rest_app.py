@@ -250,13 +250,12 @@ def delete_user(id):
             cursor.close()
             connection.close()
 
-@app.route('/stop_server', methods=['POST'])
+
+@app.route('/stop_server')
 def stop_server():
-    func = request.environ.get('werkzeug.server.shutdown')
-    if func is None:
-        return jsonify({"error": "Not running with the Werkzeug Server"}), 500
-    func()
-    return jsonify({"message": "Server shutting down..."}), 200
+    os.kill(os.getpid(), signal.CTRL_C_EVENT)
+    return 'Server stopped'
+
 
 
 if __name__ == '__main__':
