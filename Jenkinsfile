@@ -78,14 +78,6 @@ pipeline {
                 }
             }
         }
-        stage("wait_prior_starting_smoke_testing") {
-            steps {
-               script {
-                print('I am sleeping for a while')
-                sleep(30)    
-                }
-            }
-        }
         stage('Docker Login') {
             steps {
                 script {
@@ -103,15 +95,15 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('third-part/containers_images/backend_app') {
+                    dir('containers_images/backend_app') {
                         echo 'Building Backend Docker image...'
                         bat 'docker build -t %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION% .'
                     }
-                    dir('third-part/containers_images/frontend_app') {
+                    dir('containers_images/frontend_app') {
                         echo 'Building Frontend Docker image...'
                         bat 'docker build -t %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION% .'
                     }
-                    dir('third-part/containers_images/mysql_DB') {
+                    dir('containers_images/mysql_DB') {
                         echo 'Building MySQL Docker image...'
                         bat 'docker build -t %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION% .'
                     }
