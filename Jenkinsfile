@@ -151,32 +151,32 @@ pipeline {
 
         
 
-        // stage('Test Dockerized App') {
-        //     steps {
-        //         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-        //          dir('third-part/Code Non Containers/backend') {
-        //             echo 'Testing dockerized app with backend and frontend tests...'
-        //             bat 'python backend_testing.py'
-        //             bat 'python frontend_testing.py'
-        //             bat 'python combined_testing.py'
-        //          }
-        //         }
-        //     }
-        // }
+        stage('Test Dockerized App') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                 dir('Code Non Containers/backend') {
+                    echo 'Testing dockerized app with backend and frontend tests...'
+                    bat 'python backend_testing.py'
+                    bat 'python frontend_testing.py'
+                    bat 'python combined_testing.py'
+                 }
+                }
+            }
+        }
 
-        // stage('Clean Environment_containers') {
-        //     steps {
-        //         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-        //             echo 'Cleaning up environment...'
-        //             bat """
-        //             docker-compose down
-        //             docker rmi %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION%
-        //             docker rmi %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION%
-        //             docker rmi %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION%
-        //             """
-        //         }
-        //     }
-        // }
+        stage('Clean Environment_containers') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    echo 'Cleaning up environment...'
+                    bat """
+                    docker-compose down
+                    docker rmi %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION%
+                    docker rmi %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION%
+                    docker rmi %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION%
+                    """
+                }
+            }
+        }
     }
 
     post {
