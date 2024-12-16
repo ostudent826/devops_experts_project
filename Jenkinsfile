@@ -116,17 +116,17 @@ pipeline {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                     echo 'Logging in to Docker Hub using token...'
                     withCredentials([string(credentialsId: 'dckr_pat_td8LmOyzWeqAfUcyW-3w37sJaTo', variable: 'DOCKER_TOKEN')]) {
-                        bat """
-                        echo %DOCKER_TOKEN% | docker login -u ostudent826 --password-stdin
-                        docker tag %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%/backend:%DOCKER_IMAGE_VERSION%
-                        docker push %DOCKER_REPO%/backend:%DOCKER_IMAGE_VERSION%
+                    echo 'Pushing Docker images...'
+                    bat """
+                    docker tag %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%/%DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION%
+                    docker push %DOCKER_REPO%/backend:%DOCKER_IMAGE_VERSION%
         
-                        docker tag %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%/frontend:%DOCKER_IMAGE_VERSION%
-                        docker push %DOCKER_REPO%/frontend:%DOCKER_IMAGE_VERSION%
+                    docker tag %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%/%DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION%
+                    docker push %DOCKER_REPO%/frontend:%DOCKER_IMAGE_VERSION%
         
-                        docker tag %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%/mysql:%DOCKER_IMAGE_VERSION%
-                        docker push %DOCKER_REPO%/mysql:%DOCKER_IMAGE_VERSION%
-                        """
+                    docker tag %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%/%DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION%
+                    docker push %DOCKER_REPO%/mysql:%DOCKER_IMAGE_VERSION%
+                    """
                     }
                 }
             }
