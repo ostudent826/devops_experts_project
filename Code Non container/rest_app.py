@@ -253,7 +253,7 @@ def delete_user(id):
 
 @app.route('/stop_server')
 def stop_server():
-    os.kill(os.getpid(), signal.CTRL_C_EVENT)
+    os._exit(0)
     return 'Server stopped'
 
 
