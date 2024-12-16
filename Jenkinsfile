@@ -94,15 +94,15 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('third-part/containers images/backend_app') {
+                    dir('third-part/containers_images/backend_app') {
                         echo 'Building Backend Docker image...'
                         bat 'docker build -t %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION% .'
                     }
-                    dir('third-part/containers images/frontend_app') {
+                    dir('third-part/containers_images/frontend_app') {
                         echo 'Building Frontend Docker image...'
                         bat 'docker build -t %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION% .'
                     }
-                    dir('third-part/containers images/mysql_DB') {
+                    dir('third-part/containers_images/mysql_DB') {
                         echo 'Building MySQL Docker image...'
                         bat 'docker build -t %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION% .'
                     }
