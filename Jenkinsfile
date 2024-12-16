@@ -7,7 +7,7 @@ pipeline {
         DOCKER_IMAGE_FRONTEND = "devop_prj_frontend_app"  
         DOCKER_IMAGE_MYSQL = "devop_prj_mysql_db"  
         DOCKER_REPO = "ostudent826/devops_experts_project"
-        DOCKER_TOKEN = "dckr_pat_td8LmOyzWeqAfUcyW-3w37sJaTo"
+        DOCKER_TOKEN = "dckr_pat_wzh1puwJQnlpYlB8YIGsp-3liIc"
         DOCKER_USER = "ostudent826"
     }
 
