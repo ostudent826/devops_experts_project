@@ -7,7 +7,7 @@ pipeline {
         DOCKER_IMAGE_FRONTEND = "devop_prj_frontend_app"  
         DOCKER_IMAGE_MYSQL = "devop_prj_mysql_db"  
         DOCKER_REPO = "ostudent826/devops_experts_project"
-        DOCKER_TOKEN = "dckr_pat_wzh1puwJQnlpYlB8YIGsp-3liIc"
+        DOCKER_TOKEN = "dckr_pat_td8LmOyzWeqAfUcyW-3w37sJaTo"
         DOCKER_USER = "ostudent826"
     }
 
@@ -116,15 +116,16 @@ pipeline {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {                      
                     echo 'Pushing Docker images...'
                     bat """
-                    docker tag %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%/%DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION%
-                    docker push %DOCKER_REPO%/%DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION%
-        
-                    docker tag %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%/%DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION%
-                    docker push %DOCKER_REPO%/%DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION%
-        
-                    docker tag %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%/%DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION%
-                    docker push %DOCKER_REPO%/%DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION%
+                    docker tag %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%:backend-%DOCKER_IMAGE_VERSION%
+                    docker push %DOCKER_REPO%:backend-%DOCKER_IMAGE_VERSION%
+                    
+                    docker tag %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%:frontend-%DOCKER_IMAGE_VERSION%
+                    docker push %DOCKER_REPO%:frontend-%DOCKER_IMAGE_VERSION%
+                    
+                    docker tag %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION% %DOCKER_REPO%:mysql-%DOCKER_IMAGE_VERSION%
+                    docker push %DOCKER_REPO%:mysql-%DOCKER_IMAGE_VERSION%
                     """
+
                 }
             }
         }
