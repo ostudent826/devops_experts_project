@@ -8,6 +8,7 @@ pipeline {
         DOCKER_IMAGE_MYSQL = "devop_prj_mysql_db"  
         DOCKER_REPO = "ostudent826/devops_experts_project"
         DOCKER_TOKEN = "dckr_pat_td8LmOyzWeqAfUcyW-3w37sJaTo"
+        DOCKER_USER = "ostudent826"
     }
 
     stages {
@@ -89,7 +90,7 @@ pipeline {
             steps {
                 echo 'Authenticating with Docker Hub...'
                 bat """
-                echo %DOCKER_TOKEN% | docker login --username %DOCKER_REPO% --password-stdin
+                echo %DOCKER_TOKEN% | docker login --username %DOCKER_USER% --password-stdin
                 """
             }
         }
