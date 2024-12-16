@@ -88,10 +88,15 @@ pipeline {
         }
         stage('Docker Login') {
             steps {
-                echo 'Authenticating with Docker Hub...'
-                bat """
-                echo %DOCKER_TOKEN% | docker login --username %DOCKER_USER% --password-stdin
-                """
+                script {
+                    // Write the Docker token to a file securely
+                    writeFile file: 'docker_token.txt', text: "${DOCKER_TOKEN}"
+                    
+                    // Use --password-stdin to read from the file
+                    bat """
+                    docker login --username ${DOCKER_USER} --password-stdin < docker_token.txt
+                    """
+                }
             }
         }
 
