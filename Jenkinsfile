@@ -12,14 +12,14 @@ pipeline {
         stage('Run Backend Server') {
             steps {
                 // Updated path to backend server script
-                bat 'start /min /b python App/templates/rest_app.py'
+                bat 'start /min /b python App/rest_app.py'
             }
         }
 
         stage('Run Frontend Server') {
             steps {
                 // Updated path to frontend server script
-                bat 'start /min /b python App/templates/web_app.py'
+                bat 'start /min /b python App/web_app.py'
             }
         }
 
