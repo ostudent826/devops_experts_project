@@ -23,7 +23,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                         bat 'start /min /b python App/rest_app.py'
-                    }
+
                 }
             }
         }
