@@ -1,0 +1,6 @@
+Flask
+flask-cors
+pymysql
+names
+requests
+selenium
