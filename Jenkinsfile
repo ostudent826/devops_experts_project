@@ -58,9 +58,8 @@ pipeline {
         stage('Combined Testing') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('Code Non container') {
                         bat 'python "Testing Scripts/combined_testing.py"'
-                    }
+
                 }
             }
         }
