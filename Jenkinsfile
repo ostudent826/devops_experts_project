@@ -11,51 +11,54 @@ pipeline {
 
         stage('Run Backend Server') {
             steps {
-                bat 'start /min /b python rest_app.py'
+                // Updated path to backend server script
+                bat 'start /min /b python App/templates/rest_app.py'
             }
         }
 
         stage('Run Frontend Server') {
             steps {
-                bat 'start /min /b python web_app.py'
+                // Updated path to frontend server script
+                bat 'start /min /b python App/templates/web_app.py'
             }
         }
 
         stage('Backend Testing') {
             steps {
-                // Run backend_testing.py and wait for it to finish
-                bat 'python backend_testing.py'
+                // Updated path to backend_testing.py
+                bat 'python Testing Scripts/backend_testing.py'
             }
         }
 
         stage('Frontend Testing') {
             steps {
-                // Intentional error to test email notification
-                bat 'python frontend_testing.py'
+                // Updated path to frontend_testing.py
+                bat 'python Testing Scripts/frontend_testing.py'
             }
         }
-		
-		stage('Combined Testing') {
+
+        stage('Combined Testing') {
             steps {
-                // Run combined_testing.py and wait for it to finish
-                bat 'python combined_testing.py'
+                // Updated path to combined_testing.py
+                bat 'python Testing Scripts/combined_testing.py'
             }
         }
 
         stage('Clean Environment') {
             steps {
-                // Run clean_environment.py at the end to perform cleanup
-                bat 'python clean_environment.py'
+                // Updated path to clean_environment.py
+                bat 'python Testing Scripts/clean_environment.py'
             }
         }
     }
 
     post {
         failure {
+            // Email notification in case of failure
             emailext(
-                subject: 'omo',
+                subject: 'Build Failure Notification',
                 body: '${JELLY_SCRIPT,template="html"}',
-                to: 'ofrigsp@gmailcom',
+                to: 'ofrigsp@gmail.com',
                 replyTo: '$DEFAULT_REPLYTO',
                 mimeType: 'text/html'
             )
