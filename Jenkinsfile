@@ -26,28 +26,28 @@ pipeline {
         stage('Backend Testing') {
             steps {
                 // Updated path to backend_testing.py
-                bat 'python Testing Scripts/backend_testing.py'
+                bat 'python "Testing Scripts/backend_testing.py"'
             }
         }
 
         stage('Frontend Testing') {
             steps {
                 // Updated path to frontend_testing.py
-                bat 'python Testing Scripts/frontend_testing.py'
+                bat 'python "Testing Scripts/frontend_testing.py"'
             }
         }
 
         stage('Combined Testing') {
             steps {
                 // Updated path to combined_testing.py
-                bat 'python Testing Scripts/combined_testing.py'
+                bat 'python "Testing Scripts/combined_testing.py"'
             }
         }
 
         stage('Clean Environment') {
             steps {
                 // Updated path to clean_environment.py
-                bat 'python Testing Scripts/clean_environment.py'
+                bat 'python "Testing Scripts/clean_environment.py"'
             }
         }
     }
