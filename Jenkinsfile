@@ -18,6 +18,15 @@ pipeline {
             }
         }
 
+        stage('Create mySQL_DB') {
+            steps {
+                script {
+                    // Creating DB Schema and table
+                    bat 'python mySQL/createDB.py'
+                }
+            }
+        }
+
         stage('Run Backend Server') {
             steps {
                 // Updated path to backend server script
