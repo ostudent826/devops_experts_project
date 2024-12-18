@@ -19,6 +19,14 @@ pipeline {
             }
         }
 
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Install all libraries from requirements.txt
+                    bat 'pip install -r prj-requirements.txt'
+                }
+            }
+        }
         stage('Run Backend Server') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
