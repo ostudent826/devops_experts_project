@@ -55,7 +55,7 @@ pipeline {
             emailext(
                 subject: 'omo',
                 body: '${JELLY_SCRIPT,template="html"}',
-                to: 'eliran9657@gmailcom',
+                to: 'ofrigsp@gmailcom',
                 replyTo: '$DEFAULT_REPLYTO',
                 mimeType: 'text/html'
             )
