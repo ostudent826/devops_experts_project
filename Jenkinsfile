@@ -40,7 +40,7 @@ pipeline {
         stage('Backend Testing') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                       bat 'start /min /b python "Testing Scripts/backend_testing.py"'
+                       bat 'python "Testing Scripts/backend_testing.py"'
 
                 }
             }
@@ -49,7 +49,7 @@ pipeline {
         stage('Frontend Testing') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                        bat 'start /min /b python "Testing Scripts/frontend_testing.py"'
+                        bat 'python "Testing Scripts/frontend_testing.py"'
 
                 }
             }
@@ -59,7 +59,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                     dir('Code Non container') {
-                        bat 'python combined_testing.py'
+                        bat 'python "Testing Scripts/combined_testing.py"'
                     }
                 }
             }
@@ -68,9 +68,8 @@ pipeline {
         stage('Clean Environment') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('Code Non container') {
-                        bat 'python clean_environment.py'
-                    }
+                        bat 'python "Testing Scripts/clean_environment.py"'
+
                 }
             }
         }
