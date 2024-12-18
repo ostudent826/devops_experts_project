@@ -1,7 +1,11 @@
 import json
-from time import sleep
+from random import randint
 import requests
 import pymysql
+import names
+import tempfile
+import os
+
 
 headers = {"Content-Type": "application/json"}
 
@@ -12,6 +16,8 @@ DB_CONFIG = {
     'password': '123456',
     'database': 'users'
 }
+
+#Add user to DB
 def add_user_post(username,id):
     json_data = {"user_name": username}
     url = f"http://localhost:5000/users/{id}"
@@ -29,6 +35,7 @@ def add_user_post(username,id):
     except Exception as e:
         print(f"Error: {e}")
 
+#Check if user added
 def check_user_added(id):
     url = f"http://localhost:5000/users/{id}"
     try:
@@ -36,7 +43,7 @@ def check_user_added(id):
         send_request_get = requests.get(url,headers=headers)
 
         if send_request_get.status_code == 200:
-            print("Success:", send_request_get.json())
+            print("Success used added:", send_request_get.json())
         else:
             print(f"Failed with status code: {send_request_get.status_code}")
             print("Response:", send_request_get.text)
@@ -44,6 +51,7 @@ def check_user_added(id):
     except Exception as e:
         print(f"Error: {e}")
 
+#Check if user exist in db
 def query_db_user(id):
 
     connection = None
@@ -91,12 +99,18 @@ def query_db_user(id):
 
 if __name__ == '__main__':
 
+    id = randint(1, 5)
+    print(f"Generated ID: {id}")
 
-    id = 37
-    add_user_post("ofritest",id)
-    sleep(2)
+    # Create a temporary file in the current directory
+    temp_file_path = os.path.join(os.getcwd(), "temp_id.txt")
+
+    # Write the ID to the temporary file
+    with open(temp_file_path, "w") as temp_file:
+        temp_file.write(str(id))
+
+    # Perform operations
+    add_user_post(names.get_full_name(), id)
     check_user_added(id)
-    sleep(2)
     query_db_user(id)
-
 
