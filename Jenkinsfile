@@ -31,9 +31,8 @@ pipeline {
         stage('Run Frontend Server') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('Code Non container') {
-                        bat 'start /min /b python web_app.py'
-                    }
+                        bat 'start /min /b python App/web_app.py'
+
                 }
             }
         }
@@ -41,9 +40,8 @@ pipeline {
         stage('Backend Testing') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('Code Non container') {
-                        bat 'python backend_testing.py'
-                    }
+                       bat 'start /min /b python "Testing Scripts/backend_testing.py"'
+
                 }
             }
         }
@@ -51,9 +49,8 @@ pipeline {
         stage('Frontend Testing') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                    dir('Code Non container') {
-                        bat 'python frontend_testing.py'
-                    }
+                        bat 'start /min /b python "Testing Scripts/frontend_testing.py"'
+
                 }
             }
         }
