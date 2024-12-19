@@ -156,12 +156,13 @@ pipeline {
         stage('Test Dockerized App') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                 dir('Code Non container') {
+
                     echo 'Testing dockerized app with backend and frontend tests...'
+
                     bat 'python "Testing Scripts/backend_testing.py"'
                     bat 'python "Testing Scriptsfrontend_testing.py"'
                     bat 'python "Testing Scripts/combined_testing.py"'
-                 }
+
                 }
             }
         }
