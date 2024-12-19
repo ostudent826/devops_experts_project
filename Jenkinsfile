@@ -160,7 +160,7 @@ pipeline {
                     echo 'Testing dockerized app with backend and frontend tests...'
 
                     bat 'python "Testing Scripts/backend_testing.py"'
-                    bat 'python "Testing Scriptsfrontend_testing.py"'
+                    bat 'python "Testing Scripts/frontend_testing.py"'
                     bat 'python "Testing Scripts/combined_testing.py"'
 
                 }
