@@ -99,15 +99,15 @@ pipeline {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                     dir('containers_images/backend_app') {
                         echo 'Building Backend Docker image...'
-                        bat 'docker build --rm -t %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION% .'
+                        bat 'docker build -t %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION% .'
                     }
                     dir('containers_images/frontend_app') {
                         echo 'Building Frontend Docker image...'
-                        bat 'docker build --rm -t %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION% .'
+                        bat 'docker build -t %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION% .'
                     }
                     dir('containers_images/mysql_DB') {
                         echo 'Building MySQL Docker image...'
-                        bat 'docker build --rm -t %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION% .'
+                        bat 'docker build -t %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION% .'
                     }
                 }
             }
@@ -176,6 +176,9 @@ pipeline {
                     docker rmi %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION%
                     docker rmi %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION%
                     docker rmi %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION%
+                    docker image prune -f
+                    docker volume rm devops_project_pipeline_third_part_mysql_data || echo "Volume not found"
+                    docker volume prune -f
                     """
                 }
             }
