@@ -11,7 +11,7 @@ headers = {"Content-Type": "application/json"}
 
 DB_CONFIG = {
     'host': 'localhost',
-    'port': 3306,
+    'port': 3307,
     'user': 'root',
     'password': '123456',
     'database': 'users'
