@@ -161,7 +161,7 @@ pipeline {
 
                     bat 'python "Testing Scripts/backend_testing.py"'
                     bat 'python "Testing Scripts/frontend_testing.py"'
-                    bat 'python "Testing Scripts/combined_testing.py"'
+                    bat 'python "Testing Scripts/combined_testing-container.py"'
 
                 }
             }
