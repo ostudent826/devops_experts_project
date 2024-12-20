@@ -8,6 +8,7 @@ WORKDIR /app
 COPY web_app-container.py /app/
 COPY requirements.txt /app/
 COPY templates /app/templates
+COPY static /app/static
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
