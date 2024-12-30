@@ -8,7 +8,7 @@ import signal
 
 # Database configuration
 DB_CONFIG = {
-    'host': 'mysql_container',
+    'host': 'mysql-container',
     'port': 3306,
     'user': 'admin',
     'password': '123456',
