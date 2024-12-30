@@ -1,0 +1,14 @@
+image:
+  repository: ostudent826/devops_experts_project
+  tag: mysql-v1
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 3306
+
+mysql:
+  rootPassword: 123456
+  database: users

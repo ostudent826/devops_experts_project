@@ -1,0 +1,10 @@
+image:
+  repository: ostudent826/devops_experts_project
+  tag: frontend-v1
+  pullPolicy: IfNotPresent
+
+replicaCount: 1
+
+service:
+  type: NodePort
+  port: 3000
