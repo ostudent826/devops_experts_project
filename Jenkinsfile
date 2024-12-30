@@ -19,67 +19,67 @@ pipeline {
             }
         }
 
-        // stage('Install Dependencies') {
-        //     steps {
-        //         script {
-        //             // Install all libraries from requirements.txt
-        //             bat 'pip install -r prj-requirements.txt'
-        //         }
-        //     }
-        // }
-        // stage('Run Backend Server') {
-        //     steps {
-        //         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-        //                 bat 'start /min /b python App/rest_app.py'
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Install all libraries from requirements.txt
+                    bat 'pip install -r prj-requirements.txt'
+                }
+            }
+        }
+        stage('Run Backend Server') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                        bat 'start /min /b python App/rest_app.py'
 
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
 
-        // stage('Run Frontend Server') {
-        //     steps {
-        //         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-        //                 bat 'start /min /b python App/web_app.py'
+        stage('Run Frontend Server') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                        bat 'start /min /b python App/web_app.py'
 
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
 
-        // stage('Backend Testing') {
-        //     steps {
-        //         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-        //                bat 'python "Testing Scripts/backend_testing.py"'
+        stage('Backend Testing') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                       bat 'python "Testing Scripts/backend_testing.py"'
 
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
 
-        // stage('Frontend Testing') {
-        //     steps {
-        //         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-        //                 bat 'python "Testing Scripts/frontend_testing.py"'
+        stage('Frontend Testing') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                        bat 'python "Testing Scripts/frontend_testing.py"'
 
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
 
-        // stage('Combined Testing') {
-        //     steps {
-        //         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-        //                 bat 'python "Testing Scripts/combined_testing.py"'
+        stage('Combined Testing') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                        bat 'python "Testing Scripts/combined_testing.py"'
 
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
 
-        // stage('Clean Environment') {
-        //     steps {
-        //         catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-        //                 bat 'python "Testing Scripts/clean_environment.py"'
+        stage('Clean Environment') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                        bat 'python "Testing Scripts/clean_environment.py"'
 
-        //         }
-        //     }
-        // }
+                }
+            }
+        }
         stage('Docker Login') {
             steps {
                 script {
@@ -151,12 +151,6 @@ pipeline {
             }
         }
 
-        stage ("wait_prior_starting_smoke_testing") {
-            steps {
-              echo 'Waiting 5 minutes for deployment to complete prior starting smoke testing'
-              sleep 300 // seconds
-            }
-        }
         stage('Test Dockerized App') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
