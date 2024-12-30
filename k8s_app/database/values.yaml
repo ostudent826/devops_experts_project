@@ -3,12 +3,20 @@ image:
   tag: mysql-v1
   pullPolicy: IfNotPresent
 
-replicaCount: 1
-
 service:
   type: ClusterIP
   port: 3306
+  externalPort: 3307
 
 mysql:
   rootPassword: 123456
   database: users
+  user: root
+  userPassword: 123456
+
+persistence:
+  enabled: true
+  mountPath: /var/lib/mysql
+  size: 1Gi
+  storageClass: ""
+

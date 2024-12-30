@@ -1,0 +1,14 @@
+image:
+  repository: ostudent826/devops_experts_project
+  tag: frontend-v1
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 5001
+  externalPort: 5001
+
+dependencies:
+  database:
+    enabled: true
+

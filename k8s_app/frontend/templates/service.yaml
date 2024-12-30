@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}-frontend
+  labels:
+    app: {{ .Release.Name }}-frontend
+spec:
+  type: {{ .Values.service.type }} # Defined in values.yaml (e.g., ClusterIP, NodePort, or LoadBalancer)
+  ports:
+    - port: {{ .Values.service.port }}             # External port
+      targetPort: {{ .Values.service.port }}       # Pod's container port
+  selector:
+    app: {{ .Release.Name }}-frontend             # Matches frontend deployment selector
+
