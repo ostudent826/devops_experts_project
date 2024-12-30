@@ -2,7 +2,7 @@
 services:
   mysql_db:
     image: ${DOCKER_IMAGE_MYSQL}:${IMAGE_TAG}
-    container_name: mysql_container
+    container_name: mysql-container
     ports:
       - "3307:3306"               
     environment:
