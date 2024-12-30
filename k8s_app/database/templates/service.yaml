@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: {{ .Release.Name }}-database
 spec:
-  type: {{ .Values.service.type }} # Type of the service (ClusterIP, NodePort, LoadBalancer)
+  type: {{ .Values.service.type }}  # Use NodePort from values.yaml
   ports:
-    - port: {{ .Values.service.port }}          # Port exposed by the service
-      targetPort: {{ .Values.service.port }}    # Port mapped to the container's port
+    - port: {{ .Values.service.port }}           # Internal MySQL port
+      targetPort: {{ .Values.service.port }}     # Pod's container port
       {{- if eq .Values.service.type "NodePort" }}
-      nodePort: {{ .Values.service.externalPort | default "" }}
+      nodePort: {{ .Values.service.externalPort }} # External port for NodePort
       {{- end }}
   selector:
     app: {{ .Release.Name }}-database

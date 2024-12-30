@@ -4,19 +4,19 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
+  type: NodePort
   port: 3306
-  externalPort: 3307
+  externalPort: 30007
 
 mysql:
   rootPassword: 123456
   database: users
-  user: root
+  user: admin
   userPassword: 123456
 
 persistence:
   enabled: true
   mountPath: /var/lib/mysql
   size: 1Gi
-  storageClass: ""
+  storageClass: "hostpath"
 
