@@ -4,7 +4,7 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 5001
   externalPort: 5001
 

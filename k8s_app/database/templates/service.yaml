@@ -6,7 +6,7 @@ spec:
   type: {{ .Values.service.type }}  # Use NodePort from values.yaml
   ports:
     - port: {{ .Values.service.port }}           # Internal MySQL port
-      targetPort: {{ .Values.service.port }}     # Pod's container port
+      targetPort: {{ .Values.service.targetPort }}     # Pod's container port
       {{- if eq .Values.service.type "NodePort" }}
       nodePort: {{ .Values.service.externalPort }} # External port for NodePort
       {{- end }}

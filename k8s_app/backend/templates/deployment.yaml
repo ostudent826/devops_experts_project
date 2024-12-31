@@ -19,6 +19,6 @@ spec:
           ports:
             - containerPort: {{ .Values.service.port }}
           env:
-            - name: DATABASE_HOST
-              value: {{ .Release.Name }}-database
+            - name: BACKEND_HOST
+              value: {{ .Release.Name }}-backend
 

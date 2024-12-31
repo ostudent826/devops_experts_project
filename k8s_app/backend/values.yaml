@@ -3,12 +3,9 @@ image:
   tag: backend-v1
   pullPolicy: IfNotPresent
 
+replicaCount: 1
+
 service:
-  type: ClusterIP
+  type: LoadBalancer
   port: 5000
-  externalPort: 5000
-
-dependencies:
-  database:
-    enabled: true
-
+  targetPort: 5000

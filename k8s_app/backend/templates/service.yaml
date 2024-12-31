@@ -10,5 +10,5 @@ spec:
     - port: {{ .Values.service.port }}             # External port
       targetPort: {{ .Values.service.port }}       # Pod's container port
   selector:
-    app: {{ .Release.Name }}-backend              # Matches backend deployment selector
+    app: {{ .Release.Name }}-backend             # Matches frontend deployment selector
 
