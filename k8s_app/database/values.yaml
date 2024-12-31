@@ -5,7 +5,7 @@ image:
 
 service:
   type: NodePort
-  port: 3307
+  port: 3306
   targetPort: 3306
   externalPort: 30007
 
