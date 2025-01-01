@@ -14,9 +14,9 @@ pipeline {
         RELEASE_BACKEND = "backend"
         RELEASE_FRONTEND = "frontend"
         RELEASE_DATABASE = "database"
-        CHART_BACKEND = "./k8s_app/backend-chart"
-        CHART_FRONTEND = "./k8s_app/frontend-chart"
-        CHART_DATABASE = "./k8s_app/database-chart"
+        CHART_BACKEND = "./k8s_app/backend"
+        CHART_FRONTEND = "./k8s_app/frontend"
+        CHART_DATABASE = "./k8s_app/database"
     }
 
     stages {
