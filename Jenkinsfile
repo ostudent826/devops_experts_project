@@ -195,7 +195,9 @@ pipeline {
                 dir('k8s_app') { // Change to your target directory
                     script {
                         bat """
-                        helm install ${RELEASE_DATABASE} ${CHART_DATABASE}
+                        C:\\ProgramData\\chocolatey\\bin\\helm.exe install ${RELEASE_DATABASE} ${CHART_DATABASE} ^
+                         --set image.repository=${DOCKER_REPO} ^
+                         --set image.tag=database-${DOCKER_IMAGE_VERSION}
                         """
                     }
                 }
@@ -207,7 +209,7 @@ pipeline {
                 dir('k8s_app') {
                     script {
                         bat """
-                        helm install ${RELEASE_DATABASE} ${CHART_DATABASE} ^
+                        C:\\ProgramData\\chocolatey\\bin\\helm.exe install ${RELEASE_DATABASE} ${CHART_DATABASE} ^
                          --set image.repository=${DOCKER_REPO} ^
                          --set image.tag=database-${DOCKER_IMAGE_VERSION}
                         """
@@ -221,7 +223,7 @@ pipeline {
                  dir('k8s_app') {
                     script {
                         bat """
-                        helm install ${RELEASE_DATABASE} ${CHART_DATABASE} ^
+                        C:\\ProgramData\\chocolatey\\bin\\helm.exe install ${RELEASE_DATABASE} ${CHART_DATABASE} ^
                          --set image.repository=${DOCKER_REPO} ^
                          --set image.tag=database-${DOCKER_IMAGE_VERSION}
                         """
