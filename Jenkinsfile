@@ -190,38 +190,44 @@ pipeline {
             }
         }
         
-            stage('Deploy Backend Chart') {
+        stage('Deploy Backend Chart') {
             steps {
-                script {
-                    sh """
-                    helm install ${RELEASE_BACKEND} ${CHART_BACKEND} \\
-                        --set image.repository=${DOCKER_REPO} \\
-                        --set image.tag=backend-${DOCKER_IMAGE_VERSION}
-                    """
+                dir('k8s_app') { // Change to your target directory
+                    script {
+                        sh """
+                        helm install ${RELEASE_BACKEND} ${CHART_BACKEND} \\
+                            --set image.repository=${DOCKER_REPO} \\
+                            --set image.tag=backend-${DOCKER_IMAGE_VERSION}
+                        """
+                    }
                 }
             }
         }
 
         stage('Deploy Frontend Chart') {
             steps {
-                script {
-                    sh """
-                    helm install ${RELEASE_FRONTEND} ${CHART_FRONTEND} \\
-                        --set image.repository=${DOCKER_REPO} \\
-                        --set image.tag=frontend-${DOCKER_IMAGE_VERSION}
-                    """
+                dir('k8s_app') {
+                    script {
+                        sh """
+                        helm install ${RELEASE_FRONTEND} ${CHART_FRONTEND} \\
+                            --set image.repository=${DOCKER_REPO} \\
+                            --set image.tag=frontend-${DOCKER_IMAGE_VERSION}
+                        """
+                    }
                 }
             }
         }
 
         stage('Deploy Database Chart') {
             steps {
-                script {
-                    sh """
-                    helm install ${RELEASE_DATABASE} ${CHART_DATABASE} \\
-                        --set image.repository=${DOCKER_REPO} \\
-                        --set image.tag=database-${DOCKER_IMAGE_VERSION}
-                    """
+                 dir('k8s_app') {
+                    script {
+                        sh """
+                        helm install ${RELEASE_DATABASE} ${CHART_DATABASE} \\
+                            --set image.repository=${DOCKER_REPO} \\
+                            --set image.tag=database-${DOCKER_IMAGE_VERSION}
+                        """
+                    }
                 }
             }
         }
