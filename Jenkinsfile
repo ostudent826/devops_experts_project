@@ -191,43 +191,43 @@ pipeline {
         }
     }
 
-        stage('Deploy Helm Charts') {
-            parallel {
-                stage('Deploy Backend') {
-                    steps {
-                        script {
-                            sh """
-                            helm install ${RELEASE_BACKEND} ${CHART_BACKEND} \\
-                                --set image.repository=${DOCKER_REPO} \\
-                                --set image.tag=backend-${DOCKER_IMAGE_VERSION}
-                            """
+     stage('Deploy Helm Charts') {
+                parallel {
+                    DeployBackend: {
+                        steps {
+                            script {
+                                sh """
+                                helm install ${RELEASE_BACKEND} ${CHART_BACKEND} \\
+                                    --set image.repository=${DOCKER_REPO} \\
+                                    --set image.tag=backend-${DOCKER_IMAGE_VERSION}
+                                """
+                            }
                         }
                     }
-                }
-                stage('Deploy Frontend') {
-                    steps {
-                        script {
-                            sh """
-                            helm install ${RELEASE_FRONTEND} ${CHART_FRONTEND} \\
-                                --set image.repository=${DOCKER_REPO} \\
-                                --set image.tag=frontend-${DOCKER_IMAGE_VERSION}
-                            """
+                    DeployFrontend: {
+                        steps {
+                            script {
+                                sh """
+                                helm install ${RELEASE_FRONTEND} ${CHART_FRONTEND} \\
+                                    --set image.repository=${DOCKER_REPO} \\
+                                    --set image.tag=frontend-${DOCKER_IMAGE_VERSION}
+                                """
+                            }
                         }
                     }
-                }
-                stage('Deploy Database') {
-                    steps {
-                        script {
-                            sh """
-                            helm install ${RELEASE_DATABASE} ${CHART_DATABASE} \\
-                                --set image.repository=${DOCKER_REPO} \\
-                                --set image.tag=database-${DOCKER_IMAGE_VERSION}
-                            """
+                    DeployDatabase: {
+                        steps {
+                            script {
+                                sh """
+                                helm install ${RELEASE_DATABASE} ${CHART_DATABASE} \\
+                                    --set image.repository=${DOCKER_REPO} \\
+                                    --set image.tag=database-${DOCKER_IMAGE_VERSION}
+                                """
+                            }
                         }
                     }
                 }
             }
-        }
 
     post {
         failure {
