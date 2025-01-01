@@ -189,7 +189,7 @@ pipeline {
                 }
             }
         }
-    }
+        
             stage('Deploy Backend Chart') {
             steps {
                 script {
@@ -225,7 +225,7 @@ pipeline {
                 }
             }
         }
-
+    }
     post {
         failure {
             emailext(
