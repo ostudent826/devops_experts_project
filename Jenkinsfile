@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE_VERSION = "v1"
+        DOCKER_IMAGE_VERSION = "${BUILD_NUMBER}"
         DOCKER_IMAGE_BACKEND = "devop_prj_backend_app"  
         DOCKER_IMAGE_FRONTEND = "devop_prj_frontend_app"  
         DOCKER_IMAGE_MYSQL = "devop_prj_mysql_db"  
