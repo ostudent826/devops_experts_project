@@ -9,13 +9,21 @@ pipeline {
         DOCKER_REPO = "ostudent826/devops_experts_project"
         DOCKER_TOKEN = "dckr_pat_td8LmOyzWeqAfUcyW-3w37sJaTo"
         DOCKER_USER = "ostudent826"
+
+        // Helm releases and chart paths
+        RELEASE_BACKEND = "backend"
+        RELEASE_FRONTEND = "frontend"
+        RELEASE_DATABASE = "database"
+        CHART_BACKEND = "./k8s_app/backend-chart"
+        CHART_FRONTEND = "./k8s_app/frontend-chart"
+        CHART_DATABASE = "./k8s_app/database-chart"
     }
 
     stages {
         stage('Pull Code') {
             steps {
                 echo 'Pulling code from GitHub...'
-                git url: 'https://github.com/ostudent826/devops_experts_project.git', branch: 'third-part'
+                git url: 'https://github.com/ostudent826/devops_experts_project.git', branch: 'fourth-part'
             }
         }
 
@@ -182,6 +190,44 @@ pipeline {
             }
         }
     }
+
+        stage('Deploy Helm Charts') {
+            parallel {
+                stage('Deploy Backend') {
+                    steps {
+                        script {
+                            sh """
+                            helm install ${RELEASE_BACKEND} ${CHART_BACKEND} \\
+                                --set image.repository=${DOCKER_REPO} \\
+                                --set image.tag=backend-${DOCKER_IMAGE_VERSION}
+                            """
+                        }
+                    }
+                }
+                stage('Deploy Frontend') {
+                    steps {
+                        script {
+                            sh """
+                            helm install ${RELEASE_FRONTEND} ${CHART_FRONTEND} \\
+                                --set image.repository=${DOCKER_REPO} \\
+                                --set image.tag=frontend-${DOCKER_IMAGE_VERSION}
+                            """
+                        }
+                    }
+                }
+                stage('Deploy Database') {
+                    steps {
+                        script {
+                            sh """
+                            helm install ${RELEASE_DATABASE} ${CHART_DATABASE} \\
+                                --set image.repository=${DOCKER_REPO} \\
+                                --set image.tag=database-${DOCKER_IMAGE_VERSION}
+                            """
+                        }
+                    }
+                }
+            }
+        }
 
     post {
         failure {
