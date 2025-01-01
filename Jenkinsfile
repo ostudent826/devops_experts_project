@@ -191,7 +191,7 @@ pipeline {
         }
     }
 
-         stage('Deploy Helm Charts') {
+        stage('Deploy Helm Charts') {
             parallel {
                 DeployBackend: {
                     steps {
@@ -228,6 +228,7 @@ pipeline {
                 }
             }
         }
+
 
     post {
         failure {
