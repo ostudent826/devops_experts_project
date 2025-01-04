@@ -57,7 +57,7 @@ This project represents a comprehensive and modular approach to deploying and te
 ## **Additional Resources**
 
 ### **Project Requirements**
-To set up the environment for this project, refer to the [Project Requirements](project_requirements.md) document for detailed instructions on prerequisites and installation steps for Windows and macOS users.
+To set up the environment for this project, refer to the [Project Mac Requirements](Project_Requirements_Mac.md) or [Project Windows Requirements](Project_Requirements_Windows.md) document for detailed instructions on prerequisites and installation steps for Windows and macOS users.
 
 ### **Jenkins Deployment**
 For detailed steps to deploy Jenkins for this project, see the [Jenkins Deployment Guide](jenkins_deployment.md). This document includes instructions for deploying Jenkins on Kubernetes using Docker Desktop and Helm.
