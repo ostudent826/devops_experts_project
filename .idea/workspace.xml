@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="255f828a-c127-4874-95f4-9809f766f0bc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/k8s_app/backend/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s_app/backend/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k8s_app/backend/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s_app/backend/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k8s_app/backend/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s_app/backend/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k8s_app/database/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s_app/database/templates/deployment.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k8s_app/database/templates/service.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s_app/database/templates/service.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k8s_app/database/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s_app/database/values.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/k8s_app/frontend/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s_app/frontend/values.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,15 +35,15 @@
     &quot;Python.web_app.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;fourth-part&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/shaam/PycharmProjects/devops_experts_project/Testing Scripts&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/shaam/PycharmProjects/devops_experts_project&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\shaam\PycharmProjects\devops_experts_project" />
       <recent name="C:\Users\shaam\PycharmProjects\devops_experts_project\Testing Scripts" />
       <recent name="C:\Users\shaam\PycharmProjects\devops_experts_project\containers_images\frontend_app" />
       <recent name="C:\Users\shaam\PycharmProjects\devops_experts_project\containers_images\backend_app" />
-      <recent name="C:\Users\shaam\PycharmProjects\devops_experts_project" />
       <recent name="C:\Users\shaam\PycharmProjects\devops_experts_project\Code Non container" />
     </key>
     <key name="MoveFile.RECENT_KEYS">

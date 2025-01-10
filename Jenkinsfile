@@ -11,12 +11,12 @@ pipeline {
         DOCKER_USER = "ostudent826"
 
         // Helm releases and chart paths
-        RELEASE_BACKEND = "backend"
-        RELEASE_FRONTEND = "frontend"
-        RELEASE_DATABASE = "database"
-        CHART_BACKEND = "./k8s_app/backend"
-        CHART_FRONTEND = "./k8s_app/frontend"
-        CHART_DATABASE = "./k8s_app/database"
+        RELEASE_BACKEND = "BE"
+        RELEASE_FRONTEND = "FE"
+        RELEASE_DATABASE = "DB"
+        CHART_BACKEND = "backend"
+        CHART_FRONTEND = "frontend"
+        CHART_DATABASE = "database"
     }
 
     stages {
