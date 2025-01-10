@@ -11,9 +11,9 @@ pipeline {
         DOCKER_USER = "ostudent826"
 
         // Helm releases and chart paths
-        RELEASE_BACKEND = "BE"
-        RELEASE_FRONTEND = "FE"
-        RELEASE_DATABASE = "DB"
+        RELEASE_BACKEND = "b-end"
+        RELEASE_FRONTEND = "f-end"
+        RELEASE_DATABASE = "db"
         CHART_BACKEND = "backend"
         CHART_FRONTEND = "frontend"
         CHART_DATABASE = "database"
