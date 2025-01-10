@@ -4,3 +4,4 @@ pymysql
 names
 requests
 selenium
+cryptography
