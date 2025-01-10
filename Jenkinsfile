@@ -195,7 +195,7 @@ pipeline {
                 dir('k8s_app') { // Change to your target directory
                     script {
                         bat """
-                         helm install ${RELEASE_BACKEND} ${CHART_DATABASE} ^
+                         helm install ${RELEASE_BACKEND} ${CHART_BACKEND} ^
                          --set image.repository=${DOCKER_REPO} ^
                          --set image.tag=database-${DOCKER_IMAGE_VERSION}
                         """
@@ -209,7 +209,7 @@ pipeline {
                 dir('k8s_app') {
                     script {
                         bat """
-                         helm install ${RELEASE_FRONTEND} ${CHART_DATABASE} ^
+                         helm install ${RELEASE_FRONTEND} ${CHART_FRONTEND} ^
                          --set image.repository=${DOCKER_REPO} ^
                          --set image.tag=database-${DOCKER_IMAGE_VERSION}
                         """
