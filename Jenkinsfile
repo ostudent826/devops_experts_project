@@ -39,8 +39,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                         bat 'start /min /b python App/rest_app.py'
-                sleep(time: 5, unit: 'SECONDS')  // Add 3 second pause after starting server
-
+                        sleep(time: 7, unit: 'SECONDS')  // Add 7 second to server stabilize
                 }
             }
         }
@@ -49,7 +48,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                         bat 'start /min /b python App/web_app.py'
-                sleep(time: 5, unit: 'SECONDS')  // Add 3 second pause after starting server
+                        sleep(time: 7, unit: 'SECONDS')  // Add 7 second to server stabilize
 
                 }
             }
@@ -158,8 +157,7 @@ pipeline {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                     echo 'Starting services with docker-compose...'
                     bat 'docker-compose up -d'
-                   sleep(time: 5, unit: 'SECONDS')  // Add 5 second pause after starting server
-
+                    sleep(time: 7, unit: 'SECONDS')  // Add 7 second to server stabilize
                 }
             }
         }
