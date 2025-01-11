@@ -48,6 +48,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                         bat 'start /min /b python App/web_app.py'
+                sleep(time: 5, unit: 'SECONDS')  // Add 3 second pause after starting server
 
                 }
             }
@@ -190,7 +191,6 @@ pipeline {
                     script {
                         bat """
                          helm install ${RELEASE_BACKEND} ${CHART_BACKEND} ^
-                         --set image.repository=${DOCKER_REPO} ^
                          --set image.tag=%DOCKER_IMAGE_BACKEND%:${DOCKER_IMAGE_VERSION}
                         """
                     }
@@ -204,7 +204,6 @@ pipeline {
                     script {
                         bat """
                          helm install ${RELEASE_FRONTEND} ${CHART_FRONTEND} ^
-                         --set image.repository=${DOCKER_REPO} ^
                          --set image.tag=%DOCKER_IMAGE_FRONTEND%:${DOCKER_IMAGE_VERSION}
                         """
                     }
@@ -218,9 +217,9 @@ pipeline {
                     script {
                         bat """
                          helm install ${RELEASE_DATABASE} ${CHART_DATABASE} ^
-                         --set image.repository=${DOCKER_REPO} ^
                          --set image.tag=%DOCKER_IMAGE_MYSQL%:${DOCKER_IMAGE_VERSION}
                         """
+
                     }
                 }
             }
