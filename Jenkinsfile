@@ -230,6 +230,28 @@ pipeline {
             }
         }
 
+        stage('Wait for Initialization') {
+            steps {
+                script {
+                    echo "Waiting for 30 seconds to allow the container to initialize..."
+                    sleep(time: 30, unit: 'SECONDS')
+                }
+            }
+        }
+
+        stage('Test Dockerized App') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+
+                    echo 'Testing dockerized app with backend and frontend tests...'
+
+                    bat 'python "Testing Scripts/backend_testing.py"'
+                    bat 'python "Testing Scripts/frontend_testing.py"'
+                    bat 'python "Testing Scripts/combined_testing-container.py"'
+
+                }
+            }
+        }
         stage('Clean Docker images and Volume') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
@@ -241,6 +263,19 @@ pipeline {
                     docker image prune -f
                     docker volume rm devops_project_pipeline_third_part_mysql_data || echo "Volume not found"
                     docker volume prune -f
+                    """
+                }
+            }
+        }
+
+        stage('Clean helm installs') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    echo 'Cleaning up environment...'
+                    bat """
+                         helm uninstall ${RELEASE_BACKEND} ^
+                         helm uninstall ${RELEASE_FRONTEND} ^
+                         helm uninstall ${RELEASE_DATABASE} ^
                     """
                 }
             }
