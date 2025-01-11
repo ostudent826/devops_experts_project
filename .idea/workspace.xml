@@ -5,6 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="255f828a-c127-4874-95f4-9809f766f0bc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Testing Scripts/combined_testing-k8s.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,19 +30,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.backend_app-container.executor&quot;: &quot;Run&quot;,
-    &quot;Python.web_app.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;fourth-part&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/shaam/PycharmProjects/devops_experts_project&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.backend_app-container.executor": "Run",
+    "Python.web_app.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "fourth-part",
+    "last_opened_file_path": "C:/Users/shaam/PycharmProjects/devops_experts_project/Testing Scripts"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\shaam\PycharmProjects\devops_experts_project" />
       <recent name="C:\Users\shaam\PycharmProjects\devops_experts_project\Testing Scripts" />
+      <recent name="C:\Users\shaam\PycharmProjects\devops_experts_project" />
       <recent name="C:\Users\shaam\PycharmProjects\devops_experts_project\containers_images\frontend_app" />
       <recent name="C:\Users\shaam\PycharmProjects\devops_experts_project\containers_images\backend_app" />
       <recent name="C:\Users\shaam\PycharmProjects\devops_experts_project\Code Non container" />
