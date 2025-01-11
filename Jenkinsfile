@@ -39,6 +39,7 @@ pipeline {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                         bat 'start /min /b python App/rest_app.py'
+                sleep(time: 5, unit: 'SECONDS')  // Add 3 second pause after starting server
 
                 }
             }
@@ -147,6 +148,7 @@ pipeline {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                     echo 'Setting image version in .env file...'
                     bat 'echo IMAGE_TAG=%DOCKER_IMAGE_VERSION% > .env'
+
                 }
             }
         }
@@ -156,6 +158,8 @@ pipeline {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                     echo 'Starting services with docker-compose...'
                     bat 'docker-compose up -d'
+                   sleep(time: 5, unit: 'SECONDS')  // Add 5 second pause after starting server
+
                 }
             }
         }
