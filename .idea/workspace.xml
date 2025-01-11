@@ -6,8 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="255f828a-c127-4874-95f4-9809f766f0bc" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s_app/backend/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s_app/backend/templates/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s_app/backend/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s_app/backend/values.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/k8s_app/database/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s_app/database/templates/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s_app/database/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s_app/database/values.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/k8s_app/frontend/templates/deployment.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s_app/frontend/templates/deployment.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/k8s_app/frontend/values.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/k8s_app/frontend/values.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
