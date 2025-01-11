@@ -239,7 +239,7 @@ pipeline {
             }
         }
 
-        stage('Test Dockerized App') {
+        stage('Test helm deplyment Apps') {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
 
