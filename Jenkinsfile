@@ -234,7 +234,7 @@ pipeline {
             steps {
                 script {
                     echo "Waiting for 30 seconds to allow the container to initialize..."
-                    sleep(time: 30, unit: 'SECONDS')
+                    sleep(time: 45, unit: 'SECONDS')
                 }
             }
         }
