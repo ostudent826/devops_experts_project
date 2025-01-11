@@ -193,7 +193,7 @@ pipeline {
                     script {
                         bat """
                          helm install ${RELEASE_BACKEND} ${CHART_BACKEND} ^
-                         --set image.name=${DOCKER_IMAGE_BACKEND}: ^
+                         --set image.name=${DOCKER_IMAGE_BACKEND} ^
                          --set image.tag=${DOCKER_IMAGE_VERSION}
                         """
                     }
@@ -207,7 +207,7 @@ pipeline {
                     script {
                         bat """
                          helm install ${RELEASE_FRONTEND} ${CHART_FRONTEND} ^
-                         --set image.name=${DOCKER_IMAGE_FRONTEND}: ^
+                         --set image.name=${DOCKER_IMAGE_FRONTEND} ^
                          --set image.tag=${DOCKER_IMAGE_VERSION}
                         """
                     }
@@ -221,7 +221,7 @@ pipeline {
                     script {
                         bat """
                          helm install ${RELEASE_DATABASE} ${CHART_DATABASE} ^
-                         --set image.name=${DOCKER_IMAGE_MYSQL}: ^
+                         --set image.name=${DOCKER_IMAGE_MYSQL} ^
                          --set image.tag=${DOCKER_IMAGE_VERSION}
                         """
 
