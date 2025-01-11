@@ -1,6 +1,6 @@
 image:
-  repository: ostudent826/devops_experts_project
-  tag: frontend-v1
+  name: ${DOCKER_IMAGE_BACKEND}
+  tag: ${IMAGE_TAG}
   pullPolicy: IfNotPresent
 
 service:
