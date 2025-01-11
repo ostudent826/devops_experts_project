@@ -272,11 +272,9 @@ pipeline {
             steps {
                 catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
                     echo 'Cleaning up environment...'
-                    bat """
-                         helm uninstall ${RELEASE_BACKEND} && ^
-                         helm uninstall ${RELEASE_FRONTEND} && ^
-                         helm uninstall ${RELEASE_DATABASE} ^
-                    """
+                    bat "helm uninstall ${RELEASE_BACKEND}"
+                    bat "helm uninstall ${RELEASE_FRONTEND}"
+                    bat "helm uninstall ${RELEASE_DATABASE}"
                 }
             }
         }
