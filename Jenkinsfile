@@ -179,12 +179,6 @@ pipeline {
                     echo 'Cleaning up environment...'
                     bat """
                     docker-compose down
-                    docker rmi %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION%
-                    docker rmi %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION%
-                    docker rmi %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION%
-                    docker image prune -f
-                    docker volume rm devops_project_pipeline_third_part_mysql_data || echo "Volume not found"
-                    docker volume prune -f
                     """
                 }
             }
@@ -197,7 +191,7 @@ pipeline {
                         bat """
                          helm install ${RELEASE_BACKEND} ${CHART_BACKEND} ^
                          --set image.repository=${DOCKER_REPO} ^
-                         --set image.tag=database-${DOCKER_IMAGE_VERSION}
+                         --set image.tag=%DOCKER_IMAGE_BACKEND%:${DOCKER_IMAGE_VERSION}
                         """
                     }
                 }
@@ -211,7 +205,7 @@ pipeline {
                         bat """
                          helm install ${RELEASE_FRONTEND} ${CHART_FRONTEND} ^
                          --set image.repository=${DOCKER_REPO} ^
-                         --set image.tag=database-${DOCKER_IMAGE_VERSION}
+                         --set image.tag=%DOCKER_IMAGE_FRONTEND%:${DOCKER_IMAGE_VERSION}
                         """
                     }
                 }
@@ -225,9 +219,25 @@ pipeline {
                         bat """
                          helm install ${RELEASE_DATABASE} ${CHART_DATABASE} ^
                          --set image.repository=${DOCKER_REPO} ^
-                         --set image.tag=database-${DOCKER_IMAGE_VERSION}
+                         --set image.tag=%DOCKER_IMAGE_MYSQL%:${DOCKER_IMAGE_VERSION}
                         """
                     }
+                }
+            }
+        }
+
+        stage('Clean Docker images and Volume') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    echo 'Cleaning up environment...'
+                    bat """
+                    docker rmi %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION%
+                    docker rmi %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION%
+                    docker rmi %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION%
+                    docker image prune -f
+                    docker volume rm devops_project_pipeline_third_part_mysql_data || echo "Volume not found"
+                    docker volume prune -f
+                    """
                 }
             }
         }
