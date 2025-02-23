@@ -1,7 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Release.Name }}-pipeline-config
-data:
-  jobs.yaml: |
-    {{ .Files.Get "jobs/pipeline.yaml" | nindent 4 }}
