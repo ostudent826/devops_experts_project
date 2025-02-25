@@ -60,6 +60,8 @@ choco install mysql -y
 ***Ignore the red output***
 ```
 
+
+
 ### **Required Versions**
 - Python 3.11 or newer
 - Git (latest version)
@@ -68,6 +70,21 @@ choco install mysql -y
 - kubectl compatible with your Kubernetes version
 - Helm 3.x
 - OpenJDK 17.0.13 or newer (Temurin distribution)
+
+
+777 add here mysql setup
+
+mysql --version
+if not regocnized restart localmachine
+
+cmd:
+mysql -u root -p
+no password
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
+FLUSH PRIVILEGES;
+EXIT;
+
 
 ---
 ## **4. Docker Desktop and Kubernetes Configuration**
