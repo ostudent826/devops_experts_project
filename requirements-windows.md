@@ -131,6 +131,7 @@ OpenJDK 64-Bit Server VM Temurin-17.0.13+11 (build 17.0.13+11, mixed mode, shari
 
 ## **Why This Version Is Better**
 - **Unified Installation**: One command installs all tools via Chocolatey.
+- jenkins url cmd - helm install jenkins https://raw.githubusercontent.com/ostudent826/devops_experts_project/main/jenkins-5.8.3.tgz -f values.yaml
 - **Consistent Version Control**: Ensures the latest version of each tool.
 - **Reduced Complexity**: Merges steps for a cleaner and more maintainable setup.
 
