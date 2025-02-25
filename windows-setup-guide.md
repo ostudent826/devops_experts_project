@@ -43,9 +43,6 @@ choco install python -y
 # For Git
 choco install git -y
 
-# For MySQL
-choco install mysql -y
-
 # For Docker Desktop
 choco install docker-desktop -y
 
@@ -57,6 +54,10 @@ choco install kubernetes-helm -y
 
 # For Java (OpenJDK 17)
 choco install temurin17 -y
+
+# For MySQL
+choco install mysql -y
+***Ignore the red output***
 ```
 
 ### **Required Versions**
