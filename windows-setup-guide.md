@@ -5,6 +5,7 @@ This document outlines all the resources and tools required to run the code in t
 First, check which components you already have installed:
 
 ```cmd
+wsl --version
 python --version
 git --version
 mysql --version
@@ -32,9 +33,24 @@ Skip installation steps for any tools that are already correctly installed.
    ```
 
 ---
-## **3. Install Missing Dependencies Using Chocolatey**
+
+
+
+### **Required Versions**
+- Python 3.11 or newer
+- Git (latest version)
+- MySQL 8.0 or newer
+- Docker Desktop with Kubernetes support
+- kubectl compatible with your Kubernetes version
+- Helm 3.x
+- OpenJDK 17.0.13 or newer (Temurin distribution)
+
+
+## **3.1 Install Missing Dependencies Using Chocolatey**
 ### **Individual Installation Commands**
 Install only what you need:
+
+*For wsl you need install it manually - https://www.youtube.com/watch?app=desktop&v=7KVdJ43dQmE*
 
 ```cmd
 # For Python (3.11+)
@@ -47,7 +63,7 @@ choco install git -y
 choco install docker-desktop -y
 
 # For Kubernetes CLI
-choco install kubernetes-cli -y
+choco install minikube -y
 
 # For Helm
 choco install kubernetes-helm -y
@@ -62,71 +78,34 @@ choco install mysql -y
 
 
 
-### **Required Versions**
-- Python 3.11 or newer
-- Git (latest version)
-- MySQL 8.0 or newer
-- Docker Desktop with Kubernetes support
-- kubectl compatible with your Kubernetes version
-- Helm 3.x
-- OpenJDK 17.0.13 or newer (Temurin distribution)
 
 
-777 add here mysql setup
+
+## **3.2 Setup mySQL server**
 
 mysql --version
 if not regocnized restart localmachine
 
-cmd:
+mysql setup
+```cmd
 mysql -u root -p
 
 ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
+
 FLUSH PRIVILEGES;
+
 EXIT;
-
-
----
-## **4. Docker Desktop and Kubernetes Configuration**
-- **Purpose**: To use Kubernetes as a container orchestration tool on your local machine.
-
-### **Steps:** (Skip if Kubernetes is already enabled)
-1. Open Docker Desktop.
-2. Navigate to **Settings** > **Kubernetes**.
-3. Check **Enable Kubernetes**.
-4. Click **Apply and Restart**.
-
-### **Verify Kubernetes Setup**
-```cmd
-kubectl get nodes
 ```
-You should see your local node listed as "Ready".
+## **3.3 Docker-Desktop need open manually to start the engine at the very first time **
 
 ---
-## **5. MySQL Configuration**
-- **Purpose**: To provide a database for the application.
 
-### **Steps:** (Skip if MySQL is already configured)
-1. Start the MySQL service (if not running):
-   ```cmd
-   net start mysql
-   ```
 
-2. Secure MySQL installation (if not already done):
-   ```cmd
-   mysql_secure_installation
-   ```
 
-3. Set up the database with the required credentials:
-   - Root username: `root`
-   - Root password: `123456`
-   - Alternatively, use:
-     - Username: `admin`
-     - Password: `123456`
 
-4. Verify MySQL is running on port `3306`:
-   ```cmd
-   mysqladmin -u root -p status
-   ```
+---
+
+
 
 ---
 ## **6. Jenkins Installation**
