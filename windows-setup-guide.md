@@ -79,7 +79,6 @@ if not regocnized restart localmachine
 
 cmd:
 mysql -u root -p
-no password
 
 ALTER USER 'root'@'localhost' IDENTIFIED BY '123456';
 FLUSH PRIVILEGES;
