@@ -106,6 +106,9 @@ EXIT;
 ## **6. Jenkins Installation**
 - **Purpose**: CI/CD pipeline management.
 
+prerequest :
+make a new dir in windows - C:/jenkins-win-agent
+
 ### **6.1 deply jenkins machine via helm**
 After ensuring Kubernetes is running:
 
