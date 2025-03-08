@@ -110,11 +110,17 @@ EXIT;
 After ensuring Kubernetes is running:
 
 ```cmd
-helm install jenkins https://raw.githubusercontent.com/ostudent826/devops_experts_project/main/jenkins-5.8.3.tgz -f values.yaml
+helm install jenkins https://raw.githubusercontent.com/ostudent826/devops_experts_project/main/jenkins-5.8.3.tgz
+
+kubectl get pods -w (check pods initilize)
 ```
-
-Note: Make sure you have the values.yaml file in your current directory.
-
+connect the jenkins server using minikube tunnel 
+do not close the terminal after the command
+```cmd
+minikube service ofri-custom-jenkins 
+```
+username: admin
+password: 123456
 ---
 ## **7. Final Checklist**
 - [ ] All required dependencies are installed and working
