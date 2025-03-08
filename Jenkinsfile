@@ -7,7 +7,7 @@ pipeline {
         DOCKER_IMAGE_FRONTEND = "devop_prj_frontend_app"  
         DOCKER_IMAGE_MYSQL = "devop_prj_mysql_db"  
         DOCKER_REPO = "ostudent826/devops_experts_project"
-        DOCKER_TOKEN = "dckr_pat_td8LmOyzWeqAfUcyW-3w37sJaTo"
+        DOCKER_TOKEN = "dckr_pat_IiHk2HpzJsK73MsrCMQmdiV_YSw"
         DOCKER_USER = "ostudent826"
     }
 
@@ -171,6 +171,16 @@ pipeline {
                     echo 'Cleaning up environment...'
                     bat """
                     docker-compose down
+                    """
+                }
+            }
+        }
+        
+        stage('Clean images-containers') {
+            steps {
+                catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
+                    echo 'Cleaning up images...'
+                    bat """
                     docker rmi %DOCKER_IMAGE_BACKEND%:%DOCKER_IMAGE_VERSION%
                     docker rmi %DOCKER_IMAGE_FRONTEND%:%DOCKER_IMAGE_VERSION%
                     docker rmi %DOCKER_IMAGE_MYSQL%:%DOCKER_IMAGE_VERSION%
@@ -188,7 +198,7 @@ pipeline {
             emailext(
                 subject: 'Build Failed: ${JOB_NAME} #${BUILD_NUMBER}',
                 body: '${JELLY_SCRIPT,template="html"}',
-                to: 'ofrigsp@gmail.com',
+                to: 'o.student826@gmail.com',
                 replyTo: '$DEFAULT_REPLYTO',
                 mimeType: 'text/html'
             )
