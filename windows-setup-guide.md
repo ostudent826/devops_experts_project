@@ -83,6 +83,7 @@ Docker-desktop need to be open manually to start the engine at the very first ti
 *after restart you need to start it again or allow it open at startup
 
 ## **3.3 Setup minikube **
+*minikube is running on docker-desktop make sure it running
 ```cmd
 minikube start
 ```
