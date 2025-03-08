@@ -5,14 +5,13 @@ This document outlines all the resources and tools required to run the code in t
 First, check which components you already have installed:
 
 ```cmd
-wsl --version
 python --version
 git --version
-mysql --version
-docker --version
-kubectl version --client
 helm version
 java --version
+docker --version
+minikube --version
+mysql --version
 ```
 
 Skip installation steps for any tools that are already correctly installed.
@@ -39,18 +38,17 @@ Skip installation steps for any tools that are already correctly installed.
 ### **Required Versions**
 - Python 3.11 or newer
 - Git (latest version)
-- MySQL 8.0 or newer
-- Docker Desktop with Kubernetes support
-- kubectl compatible with your Kubernetes version
 - Helm 3.x
 - OpenJDK 17.0.13 or newer (Temurin distribution)
+- Docker-Desktop
+- minikube
+- MySQL 8.0 or newer
 
 
 ## **3.1 Install Missing Dependencies Using Chocolatey**
 ### **Individual Installation Commands**
 Install only what you need:
 
-*For wsl you need install it manually - https://www.youtube.com/watch?app=desktop&v=7KVdJ43dQmE*
 
 ```cmd
 # For Python (3.11+)
@@ -59,17 +57,17 @@ choco install python -y
 # For Git
 choco install git -y
 
-# For Docker Desktop
-choco install docker-desktop -y
-
-# For Kubernetes CLI
-choco install minikube -y
-
 # For Helm
 choco install kubernetes-helm -y
 
 # For Java (OpenJDK 17)
 choco install temurin17 -y
+
+# For Docker Desktop
+choco install docker-desktop -y
+
+# For Kubernetes CLI
+choco install minikube -y
 
 # For MySQL
 choco install mysql -y
@@ -79,9 +77,17 @@ choco install mysql -y
 
 
 
+## **3.2 Setup Docker-Desktop **
 
+Docker-desktop need to be open manually to start the engine at the very first time
+*after restart you need to start it again or allow it open at startup
 
-## **3.2 Setup mySQL server**
+## **3.3 Setup minikube **
+```cmd
+minikube start
+```
+
+## **3.4 Setup mySQL server**
 
 mysql --version
 if not regocnized restart localmachine
@@ -96,18 +102,7 @@ FLUSH PRIVILEGES;
 
 EXIT;
 ```
-## **3.3 Docker-Desktop need open manually to start the engine at the very first time **
 
----
-
-
-
-
----
-
-
-
----
 ## **6. Jenkins Installation**
 - **Purpose**: CI/CD pipeline management.
 
