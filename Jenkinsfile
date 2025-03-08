@@ -7,7 +7,7 @@ pipeline {
         DOCKER_IMAGE_FRONTEND = "devop_prj_frontend_app"  
         DOCKER_IMAGE_MYSQL = "devop_prj_mysql_db"  
         DOCKER_REPO = "ostudent826/devops_experts_project"
-        DOCKER_TOKEN = "dckr_pat_td8LmOyzWeqAfUcyW-3w37sJaTo"
+        DOCKER_TOKEN = "dckr_pat_IiHk2HpzJsK73MsrCMQmdiV_YSw"
         DOCKER_USER = "ostudent826"
 
         // Helm releases and chart paths
@@ -233,8 +233,8 @@ pipeline {
         stage('Wait for Initialization') {
             steps {
                 script {
-                    echo "Waiting for 30 seconds to allow the container to initialize..."
-                    sleep(time: 45, unit: 'SECONDS')
+                    echo "Waiting for 60 seconds to allow the container to initialize..."
+                    sleep(time: 60, unit: 'SECONDS')
                 }
             }
         }
