@@ -106,7 +106,7 @@ EXIT;
 ## **6. Jenkins Installation**
 - **Purpose**: CI/CD pipeline management.
 
-### **Using Helm**
+### **6.1 deply jenkins machine via helm**
 After ensuring Kubernetes is running:
 
 ```cmd
@@ -119,8 +119,28 @@ do not close the terminal after the command
 ```cmd
 minikube service ofri-custom-jenkins 
 ```
+###6.2 connect the jenkins via u&p**
+
 username: admin
-password: 123456
+password: admin
+
+*the pipeline will try run right away because they will se change in the github but its only because is a new deployment*
+
+###6.3 init the windows agent of jenkins **
+
+Go to - Manage Jenkins > Nodes > windows-agent
+
+
+and change the ip and port the customized for your localmachine
+
+![image](https://github.com/user-attachments/assets/a9dd6d40-aa39-4490-b30a-04e2b6b76170)
+
+```cmd
+curl -sO http://192.168.49.2:30080/jnlpJars/agent.jar;java -jar agent.jar -url http://192.168.49.2:30080/ -secret 6391e7e6667d3ad1f712eb0777623f0b60ec3373e47a8158dfec743ed5b458ff -name "windows-agent" -webSocket -workDir "C:\jenkins-win-agent"
+
+
+
+
 ---
 ## **7. Final Checklist**
 - [ ] All required dependencies are installed and working
