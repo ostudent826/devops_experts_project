@@ -137,15 +137,20 @@ Go to - Manage Jenkins > Nodes > windows-agent
 
 and change the ip and port the customized for your localmachine
 
-![image](https://github.com/user-attachments/assets/a9dd6d40-aa39-4490-b30a-04e2b6b76170)
+![image](https://github.com/user-attachments/assets/411cfd39-4d21-49c2-98af-a25c98d3cbac)
 
 ```cmd
-curl -sO http://192.168.49.2:30080/jnlpJars/agent.jar;java -jar agent.jar -url http://192.168.49.2:30080/ -secret 6391e7e6667d3ad1f712eb0777623f0b60ec3373e47a8158dfec743ed5b458ff -name "windows-agent" -webSocket -workDir "C:\jenkins-win-agent"
 
+curl.exe -sO http://127.0.0.1:51580/jnlpJars/agent.jar & java -jar agent.jar -url http://127.0.0.1:51580/ -secret 4b4ba9340cc6d89ca3fa520b2a95b844a1b3c3616f0725ae9c774771f9f97513 -name "windows-agent" -webSocket -workDir "C:\jenkins-win-agent"
+```
 
+output
+![image](https://github.com/user-attachments/assets/733e6e55-acb5-477c-9035-0fdf03e2120e)
 
-
+do not close the terminal the agent will be disconnected
 ---
+
+
 ## **7. Final Checklist**
 - [ ] All required dependencies are installed and working
 - [ ] Docker Desktop is running with Kubernetes enabled
