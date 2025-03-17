@@ -149,6 +149,7 @@ output
 
 do not close the terminal the agent will be disconnected
 ---
+![image](https://github.com/user-attachments/assets/3d4ff34b-d8f5-4f51-a2bd-1a829142852d)
 
 
 ## **7. Final Checklist**
