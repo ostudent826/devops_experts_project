@@ -151,14 +151,19 @@ Once deployed, open:
 1. Navigate to:  
    `Manage Jenkins` → `Nodes` → `windows-agent`
 
-2. Update IP/Port to match your local machine.  
+2. Copy the unix or windows command use Git or cmd 
+  
    Example:  
-   ![agent config screenshot](https://github.com/user-attachments/assets/411cfd39-4d21-49c2-98af-a25c98d3cbac)
+  ![image](https://github.com/user-attachments/assets/eebd77ce-9dc9-4921-b484-b326f23f6a15)
 
-3. Start the Jenkins agent:
+
+
+
+3. Edit & Start the Jenkins agent:
 
 ```cmd
-curl.exe -sO http://127.0.0.1:51580/jnlpJars/agent.jar & java -jar agent.jar -url http://127.0.0.1:51580/ -secret 4b4ba9340cc6d89ca3fa520b2a95b844a1b3c3616f0725ae9c774771f9f97513 -name "windows-agent" -webSocket -workDir "C:\jenkins-win-agent"
+curl -sO http://localhost:30080/jnlpJars/agent.jar
+java -jar agent.jar -url http://localhost:30080/ -secret 111e798406f18eb293b5e708e598b0d834d666c30497338acc69781260eaee26 -name "windows-agent" -webSocket -workDir "C:\jenkins-win-agent"
 ```
 
 > ❗ **Do not close this terminal** — the agent disconnects if the process stops.
