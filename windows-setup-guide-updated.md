@@ -127,10 +127,11 @@ After confirming Docker Desktop & Kubernetes are running:
 
 ```cmd
 helm install jenkins https://raw.githubusercontent.com/ostudent826/devops_experts_project/main/jenkins-5.8.3.tgz
-kubectl get pods -w
+
 ```
 
-> Wait for Jenkins pods to initialize.
+> ⏳ **WAIT:** Jenkins pods are initializing. This may take a minute.
+
 
 ### **6.2 Access Jenkins in Browser**
 
