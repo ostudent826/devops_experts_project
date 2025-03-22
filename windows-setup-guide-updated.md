@@ -67,7 +67,7 @@ choco install docker-desktop -y
 choco install mysql -y
 ```
 
-> ⚠️ Ignore red output unless it clearly indicates an error.
+> ⚠️ Ignore red output for mysql install.
 
 ---
 
