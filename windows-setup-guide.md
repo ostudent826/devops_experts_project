@@ -10,7 +10,6 @@ git --version
 helm version
 java --version
 docker --version
-minikube --version
 mysql --version
 ```
 
@@ -41,7 +40,6 @@ Skip installation steps for any tools that are already correctly installed.
 - Helm 3.x
 - OpenJDK 17.0.13 or newer (Temurin distribution)
 - Docker-Desktop
-- minikube
 - MySQL 8.0 or newer
 
 
@@ -80,13 +78,12 @@ choco install mysql -y
 ## **3.2 Setup Docker-Desktop **
 
 Docker-desktop need to be open manually to start the engine at the very first time
-*after restart you need to start it again or allow it open at startup
 
-## **3.3 Setup minikube **
-*minikube is running on docker-desktop make sure it running
-```cmd
-minikube start
-```
+*Note - after restart you need to start it again or allow it open at startup
+
+## **3.3 Setup Dokcer-Desktop Kubernete engine **
+Go to - Docker-Desktop > Settings > Kubernetes > Start
+
 
 ## **3.4 Setup mySQL server**
 
@@ -104,13 +101,13 @@ FLUSH PRIVILEGES;
 EXIT;
 ```
 
-## **6. Jenkins Installation**
+## **4. Jenkins Installation**
 - **Purpose**: CI/CD pipeline management.
 
 prerequest :
 make a new dir in windows - C:/jenkins-win-agent
 
-### **6.1 deply jenkins machine via helm**
+### **4.1 deply jenkins machine via helm**
 After ensuring Kubernetes is running:
 
 ```cmd
@@ -118,25 +115,24 @@ helm install jenkins https://raw.githubusercontent.com/ostudent826/devops_expert
 
 kubectl get pods -w (check pods initilize)
 ```
-connect the jenkins server using minikube tunnel 
-do not close the terminal after the command
-```cmd
-minikube service ofri-custom-jenkins 
-```
-###6.2 connect the jenkins via u&p**
+connect the jenkins server using browser
+http://localhost:30080
+
+###4.2 connect the jenkins via u&p**
 
 username: admin
 password: admin
 
-*the pipeline will try run right away because they will se change in the github but its only because is a new deployment*
+*the pipeline will try run right away because they will see change in the github but its only because is a new deployment*
 
-###6.3 init the windows agent of jenkins **
+###4.3 init the windows agent of jenkins **
 
 Go to - Manage Jenkins > Nodes > windows-agent
 
 
 and change the ip and port the customized for your localmachine
 
+for example:
 ![image](https://github.com/user-attachments/assets/411cfd39-4d21-49c2-98af-a25c98d3cbac)
 
 ```cmd
@@ -147,12 +143,12 @@ curl.exe -sO http://127.0.0.1:51580/jnlpJars/agent.jar & java -jar agent.jar -ur
 output
 ![image](https://github.com/user-attachments/assets/733e6e55-acb5-477c-9035-0fdf03e2120e)
 
-do not close the terminal the agent will be disconnected
+***do not close the terminal the agent will be disconnected
 ---
 ![image](https://github.com/user-attachments/assets/3d4ff34b-d8f5-4f51-a2bd-1a829142852d)
 
 
-## **7. Final Checklist**
+## **5. Final Checklist**
 - [ ] All required dependencies are installed and working
 - [ ] Docker Desktop is running with Kubernetes enabled
 - [ ] MySQL is properly configured and accessible
