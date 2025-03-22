@@ -3,8 +3,11 @@
 
 This project represents a comprehensive and modular approach to deploying and testing a modern application stack. It is built with **scalability** and **flexibility** in mind, leveraging various technologies and adhering to a **structured pipeline** for streamlined development, testing, and deployment. 
 
-📄 For detailed guidance, refer to the [project document](https://drive.google.com/drive/folders/1SdEGGc26l9kWr5sjYgVOXWosqDGQxSXY?usp=sharing).  
-🔄 Each part of the project is developed in its own branch to ensure modularity. Branches also include modifications for creating a **localhost Windows environment**.
+📄 For detailed guidance about the project requirements, refer to the [project document](https://drive.google.com/drive/folders/1SdEGGc26l9kWr5sjYgVOXWosqDGQxSXY?usp=sharing).
+🛠️ For test it yourself in a windows envi refer to [Go to Jenkins Setup].(### **📂 Project Requirements**)
+🛠️ Each part of the project is developed in its own branch to ensure modularity. 
+🛠️ Project also include modifications for creating a **localhost Windows environment**.
+
 
 ---
 
@@ -72,6 +75,7 @@ This project represents a comprehensive and modular approach to deploying and te
 ### **📂 Project Requirements**
 - To set up the project environment:
   - [**Windows Requirements**](windows-setup-guide.md)
+  - When finished the pipelines itself located in the jenkins you will be able to run it on your localmachine
 
 
 ---
