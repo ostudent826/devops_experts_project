@@ -4,6 +4,7 @@
 This project represents a comprehensive and modular approach to deploying and testing a modern application stack. It is built with **scalability** and **flexibility** in mind, leveraging various technologies and adhering to a **structured pipeline** for streamlined development, testing, and deployment. 
 
 📄 For detailed guidance about the project requirements, refer to the [project document](https://drive.google.com/drive/folders/1SdEGGc26l9kWr5sjYgVOXWosqDGQxSXY?usp=sharing).
+
 🛠️ To test it yourself in a Windows environment, refer to [Project Requirements](#project-requirements)
 🛠️ Each part of the project is developed in its own branch to ensure modularity. 
 🛠️ Project also include modifications for creating a **localhost Windows environment**.
