@@ -71,7 +71,7 @@ This project represents a comprehensive and modular approach to deploying and te
 
 ### **📂 Project Requirements**
 - To set up the project environment:
-  - [**Windows Requirements**](Project-setup-guide.md)
+  - [**Windows Requirements**](windows-setup-guide.md)
 
 
 ---
