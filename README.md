@@ -71,14 +71,8 @@ This project represents a comprehensive and modular approach to deploying and te
 
 ### **📂 Project Requirements**
 - To set up the project environment:
-  - [**Windows Requirements**](Project_Requirements_Windows.md)
-  - [**Mac Requirements**](Project_Requirements_Mac.md) *(Coming Soon)*.
+  - [**Windows Requirements**](Project-setup-guide-updated.md)
 
-### **📜 Jenkins Deployment**
-- **Under Development**: A "plug-and-play" Jenkins deployment guide will soon be available. This guide will include:
-  - Kubernetes deployment instructions.
-  - Docker Desktop integration.
-  - Helm chart configuration.
 
 ---
 
